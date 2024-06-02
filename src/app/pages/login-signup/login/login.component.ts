@@ -14,7 +14,7 @@ import shajs from 'sha.js';
 export class LoginComponent implements OnInit {
   
   loginForm: FormGroup;
-  login
+  loginErrorMessage: boolean = false
 
   constructor(
     private fb: FormBuilder,
@@ -29,26 +29,24 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    if (this.loginInfoService.isLogged()) 
-      this.router.navigate(['']);
+    if (this.loginInfoService.isLogged())
+      this.router.navigate(['/']);
   }
 
   onSubmit(): void {
     const authRequest = new AuthRequest(
       <string>this.loginForm.value.username,
-      <string>this.loginForm.value.password,
-      // TODO poner el cifrado
-      // shajs('sha256').update(<string>this.loginForm.value.password).digest('hex'),
+      shajs('sha256').update(<string>this.loginForm.value.password).digest('hex'),
       true
     )
     
     this.authService.logInRegister(authRequest).subscribe(res => {
       if (res) {
         this.loginInfoService.addLoggedUser(authRequest)
-        this.router.navigate(['']);
-      } else {
-
+        return
       }
+      this.loginErrorMessage = true
+      this.loginForm.reset()
     })
   }
 

@@ -1,7 +1,7 @@
 // Variables de colores
 $primary-color: #007bff;
-$secondary-color: #6c757d;
-$background-color: #f8f9fa;
+$secondary-color: #b8b8b8;
+$background-color: #9ccbfa;
 
 // Estilos para el cuerpo
 body {
@@ -26,6 +26,9 @@ body {
         // text-align: center;
         margin-bottom: 10px;
     }
+    .alert-danger {
+        margin-top: 10px;
+    }
 }
 
 // Estilos para el formulario
@@ -41,6 +44,9 @@ form {
             &:focus {
                 box-shadow: none;
                 border-color: $primary-color;
+            }
+            ::placeholder {
+                color: $secondary-color;
             }
         }
     }

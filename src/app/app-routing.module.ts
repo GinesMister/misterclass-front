@@ -7,7 +7,7 @@ import { SingUpComponent } from './pages/login-signup/sing-up/sing-up.component'
 
 const routes: Routes = [
   {path: '', component: HomepageComponent},
-  {path: 'iniciarsesion', component: LoginComponent},
+  {path: 'iniciar-sesion', component: LoginComponent},
   {path: 'registrar', component: SingUpComponent},
   {path: '**', component: NotFoundComponent}
 ];
