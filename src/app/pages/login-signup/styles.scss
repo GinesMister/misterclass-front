@@ -1,0 +1,64 @@
+// Variables de colores
+$primary-color: #007bff;
+$secondary-color: #6c757d;
+$background-color: #f8f9fa;
+
+// Estilos para el cuerpo
+body {
+    background-color: $background-color;
+    font-family: Arial, sans-serif;
+}
+
+// Estilos para las tarjetas de login y registro
+.card {
+    width: 100%;
+    max-width: 400px;
+    border: none;
+    border-radius: 10px;
+    .card-body {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+    .alert strong {
+        display: block;
+        // text-align: center;
+        margin-bottom: 10px;
+    }
+}
+
+// Estilos para el formulario
+form {
+    width: 100%;
+    .form-group {
+        margin-bottom: 1.5rem;
+        label {
+            font-weight: bold;
+        }
+        input {
+            border-radius: 5px;
+            &:focus {
+                box-shadow: none;
+                border-color: $primary-color;
+            }
+        }
+    }
+    .btn-primary {
+        background-color: $primary-color;
+        border: none;
+        border-radius: 5px;
+        &:hover {
+            background-color: darken($primary-color, 10%);
+        }
+    }
+    .text-center {
+        margin-top: 1rem;
+        a {
+            color: $primary-color;
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+    }
+}

@@ -1,0 +1,21 @@
+// Variables de colores
+$primary-color: #007bff;
+$secondary-color: #6c757d;
+
+// Estilos para el header
+header {
+    background-color: $secondary-color;
+    .navbar-brand {
+        display: flex;
+        align-items: center;
+        img {
+            margin-right: 10px;
+        }
+    }
+    .nav-link {
+        color: white !important;
+        &:hover {
+            color: $primary-color !important;
+        }
+    }
+}

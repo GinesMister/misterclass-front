@@ -1,0 +1,30 @@
+// Variables de colores
+$primary-color: #007bff;
+$secondary-color: #6c757d;
+
+
+
+// Estilos para las tarjetas de clase
+.card {
+    border: none;
+    &-body {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        h5 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        p {
+            margin-bottom: 1.5rem;
+        }
+    }
+    .btn-primary {
+        background-color: $primary-color;
+        border: none;
+        &:hover {
+            background-color: darken($primary-color, 10%);
+        }
+    }
+}
