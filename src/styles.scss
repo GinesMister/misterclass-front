@@ -1,1 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
+@import 'colors.scss';
+
+.btn.btn-primary {
+    background-color: $button-primary-color;
+    border: none;
+    &:hover {
+        background-color: darken($button-primary-color, 10%);
+    }
+}

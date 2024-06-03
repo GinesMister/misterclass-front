@@ -1,9 +1,10 @@
-import { Injectable } from '@angular/core';
+import { Injectable, OnInit } from '@angular/core';
 import { UserData } from '../models/userDataDTO';
-import { GetUserDataService } from './server-petitions/get-user-data.service';
+import { GetUserDataService } from './server-petitions/get-data/get-user-data.service';
 import { AuthService } from './server-petitions/auth.service';
 import { AuthRequest } from '../models/authRequestDTO';
 import { Router } from '@angular/router';
+import { GetSubjectDataService } from './server-petitions/get-data/get-subject-data.service';
 
 @Injectable({
   providedIn: 'root'
@@ -11,12 +12,21 @@ import { Router } from '@angular/router';
 export class LoginInfoService {
 
   userData: UserData | undefined = undefined
+
+  role: 'student' | 'teacher' = 'student'
   
   constructor(
     private userDataService: GetUserDataService,
     private authService: AuthService,
-    private router: Router
-  ) { }
+    private router: Router,
+    private subjectDataService: GetSubjectDataService
+  ) {
+    // TODO SOLO EN EN DESARROLLO
+    this.addLoggedUser(new AuthRequest(
+      'gines', 
+      '378e0a98c1a910fce259c5b90d42f706dc4d47625e4c55682122f138fb0756af'
+    ))
+  }
 
   isLogged = () => ! (this.userData === undefined)
 
@@ -24,11 +34,18 @@ export class LoginInfoService {
     authRequest.exists = true
     this.authService.logInRegister(authRequest).subscribe(res => {
       if (res) {
-        this.userDataService.getUserById(authRequest.userId).subscribe(res => {
-          this.userData = res
-          this.router.navigate(['/'])
-        })
+        this.updateUserData(authRequest.userId, true)
       }
+    })
+  }
+  
+  updateUserData(userId: string, redirectToHome = false) {
+    this.userDataService.getUserById(userId).subscribe(res => {
+      this.userData = res
+      this.subjectDataService.getSubjectsCreatedByUserId(userId).subscribe(res => {
+        this.userData!.subjectsCreated = res
+        if (redirectToHome) this.router.navigate(['/'])
+      })
     })
   }
 }

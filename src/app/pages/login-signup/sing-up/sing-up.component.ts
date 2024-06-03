@@ -63,7 +63,6 @@ export class SingUpComponent implements OnInit {
         return
       }
       this.registerError = true
-      this.registerForm.reset()
     })
   }
 

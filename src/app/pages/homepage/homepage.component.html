@@ -2,28 +2,44 @@
 
 <!-- Main Content -->
 <main class="container mt-5">
-    <h1>Mis Clases</h1>
+    <h1>{{loginInfo.role == 'student' ? 'Clases subscritas' : 'Clases creadas'}}</h1>
     <div class="row">
-        <!-- Clase Card -->
-        <div class="col-md-4">
-            <div class="card mb-4 shadow-sm">
-                <div class="card-body">
-                    <h5 class="card-title">Clase 1</h5>
-                    <p class="card-text">Descripción de la clase.</p>
-                    <a href="#" class="btn btn-primary">Entrar</a>
+
+        <!-- Subscripciones -->
+        <ng-container 
+            *ngIf="loginInfo.role == 'student'"
+        >
+            <div class="col-md-4"
+                *ngFor="let subject of loginInfo.userData?.subjectsSubscribed"
+            >
+                <div class="card mb-4 shadow-sm"
+                    [ngStyle]="{'backgroundColor': subject.color}"
+                >
+                    <div class="card-body">
+                        <h5 class="card-title">{{subject.name}}</h5>
+                        <p class="card-text">Gestionada por {{subject.teacherId}}</p>
+                        <a href="#" class="btn btn-primary">Entrar</a>
+                    </div>
                 </div>
             </div>
-        </div>
-        <!-- Repite esta sección para más clases -->
-        <div class="col-md-4">
-            <div class="card mb-4 shadow-sm">
-                <div class="card-body">
-                    <h5 class="card-title">Clase 2</h5>
-                    <p class="card-text">Descripción de la clase.</p>
-                    <a href="#" class="btn btn-primary">Entrar</a>
+        </ng-container>
+
+        <ng-container 
+            *ngIf="loginInfo.role == 'teacher'"
+        >
+            <div class="col-md-4"
+                *ngFor="let subject of loginInfo.userData?.subjectsCreated"
+            >
+                <div class="card mb-4 shadow-sm"
+                    [ngStyle]="{'backgroundColor': subject.color}"
+                >
+                    <div class="card-body">
+                        <h5 class="card-title">{{subject.name}}</h5>
+                        <p class="card-text">Gestionada por {{subject.teacherId}}</p>
+                        <a href="#" class="btn btn-primary">Gestionar</a>
+                    </div>
                 </div>
             </div>
-        </div>
-        <!-- Repite según sea necesario -->
+        </ng-container>
     </div>
 </main>

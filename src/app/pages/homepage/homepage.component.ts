@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
 export class HomepageComponent implements OnInit {
 
   constructor (
-    private loginInfo: LoginInfoService,
+    public loginInfo: LoginInfoService,
     private router: Router
   ) { }
 

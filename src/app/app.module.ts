@@ -11,6 +11,8 @@ import { AuthService } from './services/server-petitions/auth.service';
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import { LoginInfoService } from './services/login-info.service';
+import { GetSubjectDataService } from './services/server-petitions/get-data/get-subject-data.service';
+import { GetUserDataService } from './services/server-petitions/get-data/get-user-data.service';
 
 @NgModule({
   declarations: [
@@ -28,7 +30,9 @@ import { LoginInfoService } from './services/login-info.service';
   ],
   providers: [
     AuthService,
-    LoginInfoService
+    LoginInfoService,
+    GetSubjectDataService,
+    GetUserDataService
   ],
   bootstrap: [AppComponent]
 })

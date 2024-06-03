@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { LoginInfoService } from '../../services/login-info.service';
 
 @Component({
   selector: 'app-header-page',
@@ -7,9 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderPageComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    public loginInfo: LoginInfoService
+  ) { }
 
   ngOnInit() {
+    
   }
 
+  changeRole = (role: 'student' | 'teacher') => this.loginInfo.role = role
 }
