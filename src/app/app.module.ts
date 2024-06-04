@@ -7,12 +7,14 @@ import { HeaderPageComponent } from './components/header-page/header-page.compon
 import { HomepageComponent } from './pages/homepage/homepage.component';
 import { SingUpComponent } from './pages/login-signup/sing-up/sing-up.component';
 import { LoginComponent } from './pages/login-signup/login/login.component';
-import { AuthService } from './services/server-petitions/auth.service';
+import { AuthService } from './services/server-petitions/api/auth.service';
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import { LoginInfoService } from './services/login-info.service';
-import { GetSubjectDataService } from './services/server-petitions/get-data/get-subject-data.service';
-import { GetUserDataService } from './services/server-petitions/get-data/get-user-data.service';
+import { CreateSubjectComponent } from './pages/create-subject/create-subject.component';
+import { SubjectService } from './services/subject.service';
+import { SubjectApiService } from './services/server-petitions/api/subject-api.service';
+import { UserApiService } from './services/server-petitions/api/user-api.service';
 
 @NgModule({
   declarations: [
@@ -21,6 +23,7 @@ import { GetUserDataService } from './services/server-petitions/get-data/get-use
     HomepageComponent,
     SingUpComponent,
     LoginComponent,
+    CreateSubjectComponent
   ],
   imports: [
     BrowserModule,
@@ -31,8 +34,9 @@ import { GetUserDataService } from './services/server-petitions/get-data/get-use
   providers: [
     AuthService,
     LoginInfoService,
-    GetSubjectDataService,
-    GetUserDataService
+    SubjectApiService,
+    UserApiService,
+    SubjectService
   ],
   bootstrap: [AppComponent]
 })

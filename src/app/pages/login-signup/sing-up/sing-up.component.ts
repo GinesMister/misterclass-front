@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { LoginInfoService } from '../../../services/login-info.service';
-import { AuthService } from '../../../services/server-petitions/auth.service';
+import { AuthService } from '../../../services/server-petitions/api/auth.service';
 import shajs from 'sha.js';
 import { AuthRequest } from '../../../models/authRequestDTO';
 

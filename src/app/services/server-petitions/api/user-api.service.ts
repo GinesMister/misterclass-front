@@ -7,7 +7,7 @@ import { UserData } from '../../../models/userDataDTO';
 @Injectable({
   providedIn: 'root'
 })
-export class GetUserDataService {
+export class UserApiService {
 
   constructor(private http: HttpClient) { }
 

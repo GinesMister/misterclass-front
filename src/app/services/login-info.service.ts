@@ -1,10 +1,10 @@
 import { Injectable, OnInit } from '@angular/core';
 import { UserData } from '../models/userDataDTO';
-import { GetUserDataService } from './server-petitions/get-data/get-user-data.service';
-import { AuthService } from './server-petitions/auth.service';
+import { AuthService } from './server-petitions/api/auth.service';
 import { AuthRequest } from '../models/authRequestDTO';
 import { Router } from '@angular/router';
-import { GetSubjectDataService } from './server-petitions/get-data/get-subject-data.service';
+import { UserApiService } from './server-petitions/api/user-api.service';
+import { SubjectApiService } from './server-petitions/api/subject-api.service';
 
 @Injectable({
   providedIn: 'root'
@@ -16,10 +16,10 @@ export class LoginInfoService {
   role: 'student' | 'teacher' = 'student'
   
   constructor(
-    private userDataService: GetUserDataService,
+    private userDataService: UserApiService,
     private authService: AuthService,
     private router: Router,
-    private subjectDataService: GetSubjectDataService
+    private subjectDataService: SubjectApiService
   ) {
     // TODO SOLO EN EN DESARROLLO
     this.addLoggedUser(new AuthRequest(
@@ -39,10 +39,11 @@ export class LoginInfoService {
     })
   }
   
-  updateUserData(userId: string, redirectToHome = false) {
-    this.userDataService.getUserById(userId).subscribe(res => {
+  updateUserData(userId?: string, redirectToHome = false) {
+    if (userId == undefined) userId = this.userData?.userId
+    this.userDataService.getUserById(userId!).subscribe(res => {
       this.userData = res
-      this.subjectDataService.getSubjectsCreatedByUserId(userId).subscribe(res => {
+      this.subjectDataService.getSubjectsCreatedByUserId(userId!).subscribe(res => {
         this.userData!.subjectsCreated = res
         if (redirectToHome) this.router.navigate(['/'])
       })

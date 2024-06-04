@@ -2,18 +2,21 @@
 
 <!-- Main Content -->
 <main class="container mt-5">
-    <h1>{{loginInfo.role == 'student' ? 'Clases subscritas' : 'Clases creadas'}}</h1>
     <div class="row">
 
         <!-- Subscripciones -->
         <ng-container 
             *ngIf="loginInfo.role == 'student'"
         >
+            <h1>Clases suscritas</h1>
             <div class="col-md-4"
                 *ngFor="let subject of loginInfo.userData?.subjectsSubscribed"
             >
                 <div class="card mb-4 shadow-sm"
-                    [ngStyle]="{'backgroundColor': subject.color}"
+                    [ngStyle]=" {
+                        'backgroundColor': subject.color,
+                        'color': isCardDark(subject) ? '#ededed' : 'black'
+                    }"
                 >
                     <div class="card-body">
                         <h5 class="card-title">{{subject.name}}</h5>
@@ -24,18 +27,31 @@
             </div>
         </ng-container>
 
+        <!-- Clases creadas -->
         <ng-container 
             *ngIf="loginInfo.role == 'teacher'"
         >
+            <h1>
+                Clases creadas
+                <span class="btn btn-primary"
+                    (click)="router.navigate(['/crear-clase'])"
+                > + Crear clase </span>
+            </h1>
             <div class="col-md-4"
                 *ngFor="let subject of loginInfo.userData?.subjectsCreated"
             >
                 <div class="card mb-4 shadow-sm"
-                    [ngStyle]="{'backgroundColor': subject.color}"
+                    [ngStyle]="{
+                        'backgroundColor': subject.color,
+                        'color': isCardDark(subject) ? '#ededed' : 'black'
+                    }"
                 >
                     <div class="card-body">
                         <h5 class="card-title">{{subject.name}}</h5>
-                        <p class="card-text">Gestionada por {{subject.teacherId}}</p>
+                        <p class="card-text">
+                            Código de acceso 
+                            <span class="access-code">{{subject.accessCode}}</span>
+                        </p>
                         <a href="#" class="btn btn-primary">Gestionar</a>
                     </div>
                 </div>

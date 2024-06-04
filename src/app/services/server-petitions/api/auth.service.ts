@@ -1,8 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { AuthRequest } from '../../models/authRequestDTO';
+import { AuthRequest } from '../../../models/authRequestDTO';
 import { Observable } from 'rxjs';
-import { DataConnetion } from './dataConnection';
+import { DataConnetion } from '../dataConnection';
 
 @Injectable({
   providedIn: 'root'

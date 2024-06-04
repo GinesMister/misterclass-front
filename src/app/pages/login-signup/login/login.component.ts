@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthRequest } from '../../../models/authRequestDTO';
-import { AuthService } from '../../../services/server-petitions/auth.service';
+import { AuthService } from '../../../services/server-petitions/api/auth.service';
 import { LoginInfoService } from '../../../services/login-info.service';
 import { Router } from '@angular/router';
 import shajs from 'sha.js';
