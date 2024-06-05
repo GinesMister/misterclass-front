@@ -9,6 +9,8 @@ import { LoginInfoService } from './login-info.service';
 })
 export class SubjectService {
   
+  subjectData: Subject | undefined
+
   constructor(
     private subjectApi: SubjectApiService,
     private loginInfo: LoginInfoService
@@ -19,5 +21,17 @@ export class SubjectService {
     return this.subjectApi.createSubject(subject).pipe(
       map(res => res.accessCode)
     )
+  }
+
+  subscribeStudentToSubject(subjectCode: string): Observable<boolean> {
+    const userId = this.loginInfo.userData?.userId
+    return this.subjectApi.subscribeStudentToSubject(userId!, subjectCode)
+  }
+
+  updateSubjectData(subjectId?: number) {
+    if (subjectId == undefined) subjectId = this.subjectData?.subjectId
+    this.subjectApi.getFullSubjectDataById(subjectId!).subscribe(res => {
+      this.subjectData = res
+    })
   }
 }

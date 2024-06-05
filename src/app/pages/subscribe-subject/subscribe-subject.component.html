@@ -1,0 +1,22 @@
+<app-header-page></app-header-page>
+
+<div class="container d-flex justify-content-center align-items-center vh-100">
+  <div class="card p-4 shadow-sm">
+    <h2 class="text-center mb-4">Subscribirse</h2>
+    <form [formGroup]="subscribeForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+            <label for="accessCode">Código de la asignatura</label>
+            <input type="text" class="form-control" id="accessCode" formControlName="accessCode" placeholder="XXXXXX">
+            <div *ngIf="subscribeForm?.get('accessCode')?.invalid && subscribeForm?.get('accessCode')?.touched" class="text-danger">
+              Introduce un código de acceso en un formato correcto: XXXXXX
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary btn-block" [disabled]="subscribeForm.invalid">Subscribirse</button>
+
+        <!-- Alerta de error de creación -->
+        <div *ngIf="subscribeError" class="alert alert-danger mt-2" role="alert">
+            <i class="fas fa-exclamation-circle"></i> Código erróneo, recuerda también que no te puedes subscribirte a tus clases creadas
+        </div>
+    </form>
+  </div>
+</div>

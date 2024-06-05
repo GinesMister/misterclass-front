@@ -21,7 +21,7 @@ export class LoginInfoService {
     private router: Router,
     private subjectDataService: SubjectApiService
   ) {
-    // TODO SOLO EN EN DESARROLLO
+    // SOLO EN EN DESARROLLO
     this.addLoggedUser(new AuthRequest(
       'gines', 
       '378e0a98c1a910fce259c5b90d42f706dc4d47625e4c55682122f138fb0756af'

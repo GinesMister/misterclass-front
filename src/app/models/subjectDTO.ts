@@ -1,7 +1,7 @@
 import { UserData } from "./userDataDTO"
 
 export class Subject {
-    subjectId?: string
+    subjectId?: number
     accessCode?: string
     name?: string
     color?: string

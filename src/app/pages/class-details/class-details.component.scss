@@ -1,0 +1,66 @@
+$primary-color: #4285f4;
+$secondary-color: #ebebeb;
+$background-color: #f1f3f4;
+$text-color: #202124;
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: $background-color;
+    color: $text-color;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.class-header {
+    background-color: $primary-color;
+    color: white;
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.units {
+    margin-top: 20px;
+}
+
+.unit {
+    background-color: white;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+.unit h2 {
+    color: $primary-color;
+    margin: 0;
+}
+
+.tasks {
+    list-style: none;
+    padding: 0;
+    margin-top: 10px;
+}
+
+.task {
+    background-color: $secondary-color;
+    color: $text-color;
+    padding: 10px;
+    border-radius: 4px;
+    margin-bottom: 10px;
+    transition: background-color 0.3s ease;
+}
+
+.task:hover {
+    background-color: darken($secondary-color, 10%);
+}
+
+h5 {
+    margin-top: 10px;
+}

@@ -15,6 +15,8 @@ import { CreateSubjectComponent } from './pages/create-subject/create-subject.co
 import { SubjectService } from './services/subject.service';
 import { SubjectApiService } from './services/server-petitions/api/subject-api.service';
 import { UserApiService } from './services/server-petitions/api/user-api.service';
+import { SubscribeSubjectComponent } from './pages/subscribe-subject/subscribe-subject.component';
+import { ClassDetailsComponent } from './pages/class-details/class-details.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +25,9 @@ import { UserApiService } from './services/server-petitions/api/user-api.service
     HomepageComponent,
     SingUpComponent,
     LoginComponent,
-    CreateSubjectComponent
+    CreateSubjectComponent,
+    SubscribeSubjectComponent,
+    ClassDetailsComponent
   ],
   imports: [
     BrowserModule,

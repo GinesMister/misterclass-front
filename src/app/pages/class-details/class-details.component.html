@@ -1,0 +1,23 @@
+<app-header-page></app-header-page>
+
+<div class="container">
+    <header class="class-header" 
+      [ngStyle]="{
+        'backgroundColor': subjectService.subjectData?.color,
+        'color': isSubjectColorDark() ? '#ededed' : 'black'
+      }"
+    >
+        <h1>{{subjectService.subjectData?.name}}</h1>
+    </header>
+    <div class="units">
+        <div class="unit">
+            <h2>Unidad 2: La Edad Media</h2>
+            <h5>Tareas pendientes</h5>
+            <ul class="tasks">
+                <li class="task">Tarea 1: Ver el video</li>
+                <li class="task">Tarea 2: Hacer un resumen</li>
+            </ul>
+        </div>
+        <!-- Añadir más unidades según sea necesario -->
+    </div>
+</div>

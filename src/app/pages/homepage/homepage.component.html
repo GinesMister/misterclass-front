@@ -8,7 +8,14 @@
         <ng-container 
             *ngIf="loginInfo.role == 'student'"
         >
-            <h1>Clases suscritas</h1>
+            <h1>Clases suscritas
+                <span class="btn btn-primary"
+                    (click)="router.navigate(['/subscribirse-clase'])"
+                > + Suscribirse a una clase </span>
+            </h1>
+            <h2 class="empty-classes" *ngIf="loginInfo.userData?.subjectsSubscribed?.length == 0">
+                Todavía no dispones de suscripciones a clases
+            </h2>
             <div class="col-md-4"
                 *ngFor="let subject of loginInfo.userData?.subjectsSubscribed"
             >
@@ -21,7 +28,7 @@
                     <div class="card-body">
                         <h5 class="card-title">{{subject.name}}</h5>
                         <p class="card-text">Gestionada por {{subject.teacherId}}</p>
-                        <a href="#" class="btn btn-primary">Entrar</a>
+                        <a routerLink="/clase/{{subject.accessCode}}" class="btn btn-primary">Entrar</a>
                     </div>
                 </div>
             </div>
@@ -37,6 +44,9 @@
                     (click)="router.navigate(['/crear-clase'])"
                 > + Crear clase </span>
             </h1>
+            <h2 class="empty-classes" *ngIf="loginInfo.userData?.subjectsCreated?.length == 0">
+                Todavía no has creado ninguna clase
+            </h2>
             <div class="col-md-4"
                 *ngFor="let subject of loginInfo.userData?.subjectsCreated"
             >
@@ -52,7 +62,7 @@
                             Código de acceso 
                             <span class="access-code">{{subject.accessCode}}</span>
                         </p>
-                        <a href="#" class="btn btn-primary">Gestionar</a>
+                        <a routerLink="/clase/{{subject.accessCode}}" class="btn btn-primary">Gestionar</a>
                     </div>
                 </div>
             </div>
