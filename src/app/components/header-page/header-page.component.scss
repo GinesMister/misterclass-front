@@ -1,34 +1,68 @@
-// Estilos para el header
 @import '../../../colors.scss';
 
+// Estilos para el header
 header {
-    background-color: $header-color !important;
-    .navbar-brand {
-        margin-left: 50px;
-        display: flex !important;
-        align-items: center !important;
-        img {
-            margin-right: 10px !important;
-        }
-        &.logo {
-            color: $logo-color;
-            font-weight: bold;
-            font-size: 1.5em;
-            font-family: 'Nexa', sans-serif;
-        }
-    }
-    .nav-link {
-        color: $header-secondary-color !important;
-        border-radius: 10px;
-        &:hover {
-            color: lighten($header-secondary-color, 50%) !important;
-            background-color: darken($header-color, 50%);
-        }
-        margin-left: 50px;
-    }
+  background-color: $header-color !important;
+  
+  .navbar-brand {
+    margin-left: 50px;
+    display: flex !important;
+    align-items: center !important;
     
-    button.selected {
-        color: lighten($header-secondary-color, 70%) !important;
-        background-color: $header-color-selected;
+    img {
+      margin-right: 10px !important;
     }
+
+    &.logo {
+      color: $logo-color;
+      font-weight: bold;
+      font-size: 1.5em;
+      font-family: 'Nexa', sans-serif;
+    }
+  }
+
+  .navbar-nav {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    
+    .nav-item {
+      margin-left: 50px;
+
+      &.logout-container {
+        margin-left: auto;
+        margin-right: 20px;
+        
+        .logout-button {
+          display: flex;
+          align-items: center;
+          .fas {
+            font-size: 20px;
+            color: white;
+          }
+
+          $logout-color: rgb(250, 16, 16);
+          background-color: $logout-color;
+          &:hover {
+            background-color: darken($logout-color, 20%);
+          }
+        }
+      }
+    }
+  }
+
+  .nav-link {
+    color: $header-secondary-color !important;
+    border-radius: 10px;
+
+    &:hover {
+      color: lighten($header-secondary-color, 50%) !important;
+      background-color: darken($header-color, 50%);
+    }
+  }
+
+  button.selected {
+    color: lighten($header-secondary-color, 70%) !important;
+    background-color: $header-color-selected;
+  }
 }

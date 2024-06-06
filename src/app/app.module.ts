@@ -17,6 +17,7 @@ import { SubjectApiService } from './services/server-petitions/api/subject-api.s
 import { UserApiService } from './services/server-petitions/api/user-api.service';
 import { SubscribeSubjectComponent } from './pages/subscribe-subject/subscribe-subject.component';
 import { ClassDetailsComponent } from './pages/class-details/class-details.component';
+import { PipesModule } from './pipes/pipes-module.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { ClassDetailsComponent } from './pages/class-details/class-details.compo
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    PipesModule
   ],
   providers: [
     AuthService,

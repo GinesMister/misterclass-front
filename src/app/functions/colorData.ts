@@ -1,5 +1,3 @@
-import { Subject } from "../models/subjectDTO";
-
 export function isColorDark(color: string) {
 
     const r = parseInt(color!.slice(1, 3), 16);

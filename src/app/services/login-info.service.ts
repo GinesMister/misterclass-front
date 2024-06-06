@@ -38,6 +38,11 @@ export class LoginInfoService {
       }
     })
   }
+
+  logoff() {
+    this.userData = undefined
+    this.router.navigate(['/iniciar-sesion'])
+  }
   
   updateUserData(userId?: string, redirectToHome = false) {
     if (userId == undefined) userId = this.userData?.userId

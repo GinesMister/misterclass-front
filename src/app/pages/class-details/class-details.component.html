@@ -8,14 +8,21 @@
       }"
     >
         <h1>{{subjectService.subjectData?.name}}</h1>
+        <p><span class="highlight">
+            {{subjectService.subjectData?.teacher?.email}}
+        </span></p>
     </header>
-    <div class="units">
+    <h2 *ngIf="subjectService.subjectData?.units?.length == 0">
+        El creador todavía no ha publicado contenido
+    </h2>
+    <div class="units" *ngFor="let unit of subjectService.subjectData?.units">
         <div class="unit">
-            <h2>Unidad 2: La Edad Media</h2>
+            <h2>{{unit.title}}</h2>
             <h5>Tareas pendientes</h5>
-            <ul class="tasks">
-                <li class="task">Tarea 1: Ver el video</li>
-                <li class="task">Tarea 2: Hacer un resumen</li>
+            <ul class="tasks" *ngFor="let task of unit.tasks">
+                <li class="task">{{task.title}} 
+                    <span class="date">{{task.deadline! | europeanDate}}</span>
+                </li>
             </ul>
         </div>
         <!-- Añadir más unidades según sea necesario -->

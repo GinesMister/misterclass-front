@@ -8,30 +8,40 @@ export class Subject {
     teacher?: UserData
     teacherId?: string
 
-    units?: Array<{
-        unitId: number,
-        title: string,
-        subtitile: string,
-
-        TheoryElements: Array<{
-            theoryElementId: number,
-            title: string,
-            description: string,
-            comments: Array<Comment>
-        }>
-
-        Tasks: Array<{
-            taskId: number,
-            title: string,
-            description: string,
-            comments: Array<Comment>
-        }>
-    }>
+    units?: Array<Unit>
 }
 
-class Comment {
+export class Comment {
     commentId?: number
     message?: string
     date?: Date
     sender?: UserData
+}
+
+export class Unit {
+    constructor(title?: string) {
+        this.title = title
+    }
+
+    unitId?: number
+    title?: string
+
+    theoryElements?: Array<TheoryElement>
+
+    tasks?: Array<Task>
+}
+
+export class TheoryElement {
+    theoryElementId?: number
+    title?: string
+    description?: string
+    comments?: Array<Comment>
+}
+
+export class Task {
+    theoryElementId?: number
+    title?: string
+    deadline?: Date
+    description?: string
+    comments?: Array<Comment>
 }

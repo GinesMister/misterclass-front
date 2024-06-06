@@ -1,12 +1,6 @@
 <div class="container d-flex justify-content-center align-items-center vh-100">
     <div class="card p-4 shadow-sm">
         <h2 class="text-center mb-4">Registro</h2>
-
-        <!-- Alerta de seguridad -->
-        <div class="alert alert-warning mt-2" role="alert">
-            <strong><i class="fas fa-exclamation-triangle"></i> Atención</strong>
-            Esta página no maneja los datos con mucha seguridad, no pongas contraseñas tuyas que puedan ser reales
-        </div>
         
         <!-- Mensaje de error -->
         <div *ngIf="registerError" class="alert alert-danger mt-2" role="alert">
@@ -58,7 +52,7 @@
                   Las contraseñas no coinciden.
                 </div>
             </div>
-            <button type="submit" class="btn btn-primary btn-block" [disabled]="registerForm.invalid">Registrar</button>
+            <button type="submit" class="btn btn-primary btn-block" [disabled]="registerForm.invalid">Registrarse</button>
             <!-- Alerta de error de registro -->
             <p class="text-center mt-3">¿Ya tienes una cuenta? <a routerLink="/iniciar-sesion">Iniciar sesión</a></p>
         </form>
