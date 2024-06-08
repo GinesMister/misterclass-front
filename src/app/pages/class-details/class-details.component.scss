@@ -55,6 +55,12 @@ body {
     border-radius: 4px;
     margin-bottom: 10px;
     transition: background-color 0.3s ease;
+    display: flex;
+    justify-content: space-between;
+}
+
+.date {
+    align-self: flex-end;
 }
 
 .task:hover {
@@ -62,6 +68,8 @@ body {
 }
 
 h5 {
+    display: flex;
+    justify-content: space-between;
     margin-top: 10px;
 }
 

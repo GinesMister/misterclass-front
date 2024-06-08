@@ -36,17 +36,17 @@ export class ClassDetailsComponent implements OnInit {
 
       // Create Unit
       // setTimeout(() => {
-      //   this.subjectService.createUpdateUnit(new Unit('Unidad 0: Inicio'))
+      //   this.subjectService.createUpdateUnit(new Unit('Unidad 0: Repaso del curso pasado'))
       // }, 3000);
 
       // Create Task
       // setTimeout(() => {
       //   const task = new Task()
-      //   task.title = 'Esta tarea es la primera que se entrega'
+      //   task.title = 'Esta tarea tarea se entre antes que la primera'
       //   task.description = 'Visualiza este vídeo y resonde a las preguntas que se adjuntan en el PDF'
-      //   task.deadline = new Date('2023-07-06T17:17:09.075Z')
+      //   task.deadline = '2023-04-06T17:17:09.075Z'
       //   this.subjectService.createUpdateTask(this.subjectService.subjectData?.units![0]!, task)
-      // }, 3000);
+      // }, 4000);
 
       // Update Task
       // setTimeout(() => {
@@ -59,5 +59,21 @@ export class ClassDetailsComponent implements OnInit {
 
   isSubjectColorDark() {
     return isColorDark(this.subjectService.subjectData?.color!)
-  }  
+  }
+
+  // Develop features
+  file?: File
+  onUploadConfirm() {
+    console.log(this.file)
+    if (!this.file) {
+      console.log('Add a file first')
+      return
+    }
+
+    this.subjectService.createDelivery(new Task (1), this.file)
+  }
+
+  onUpload(event: any) {
+    this.file = event.target.files[0]
+  }
 }

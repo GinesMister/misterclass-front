@@ -35,13 +35,24 @@ export class TheoryElement {
     theoryElementId?: number
     title?: string
     description?: string
+
     comments?: Array<Comment>
 }
 
 export class Task {
+
+    constructor(taskId?: number) {
+        this.taskId = taskId
+    }
+
+    taskId?: number
     theoryElementId?: number
     title?: string
-    deadline?: Date
+    deadline?: string // Date
     description?: string
+
+    // TODO Sincronizar con el modelo de back-end
+    delivered = false // If the task has been delivered 
+
     comments?: Array<Comment>
 }

@@ -46,4 +46,10 @@ constructor(private http: HttpClient) { }
   updateTask(taskId: number, task: Task): Observable<void> {
     return this.http.put<void>(`${this.url}/task/update?taskId=${taskId}`, task)
   }
+
+  createDelivery(taskId: number, deliverId: string, file: File): Observable<void> {
+    const formData: FormData = new FormData()
+    formData.append('file', file)
+    return this.http.put<void>(`${this.url}/delivery/create?taskId=${taskId}&delivererId=${deliverId}`, formData)
+  }
 }

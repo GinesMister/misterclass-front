@@ -32,8 +32,8 @@ export class SubjectService {
     if (subjectId == undefined) subjectId = this.subjectData?.subjectId
     this.subjectApi.getFullSubjectDataById(subjectId!).subscribe(res => {
       this.subjectData = res
-    }).add(() => {
       this.sortUnits()
+    }).add(() => {
       this.sortTasks()
     })
   }
@@ -56,15 +56,22 @@ export class SubjectService {
     this.sortTasks()
   }
 
-  // Sort
-  private sortUnits() {
-    this.subjectData?.units!.sort((a, b) => a.title!.localeCompare(b.title!))
+  // Delivery
+  createDelivery(task: Task, file: File) {
+    this.subjectApi.createDelivery(task.taskId!, this.loginInfo.userData?.userId!,file).subscribe(res => {
+      
+    })
   }
 
+  // Sort
+  private sortUnits() {
+    console.log(this.subjectData?.units!)
+    this.subjectData?.units!.sort((a, b) => a.title!.localeCompare(b.title!))
+    console.log(this.subjectData?.units!)
+  }
   private sortTasks() {
-    console.log('hola')
     for (const unit of this.subjectData?.units!) {
-      console.log(unit.tasks![0].deadline)
+      unit.tasks?.sort((a, b) => a.deadline!.localeCompare(b.deadline!))
     }
   }
 }
