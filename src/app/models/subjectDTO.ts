@@ -35,6 +35,7 @@ export class TheoryElement {
     theoryElementId?: number
     title?: string
     description?: string
+    filename?: string
 
     comments?: Array<Comment>
 }
@@ -48,11 +49,18 @@ export class Task {
     taskId?: number
     theoryElementId?: number
     title?: string
-    deadline?: string // Date
+    deadline?: string // DateTime
     description?: string
 
-    // TODO Sincronizar con el modelo de back-end
-    delivered = false // If the task has been delivered 
+    delivered = false // If the task has been delivered ONLY CLIENT
+    deliveries?: Array<Delivery>
 
     comments?: Array<Comment>
+}
+
+export class Delivery {
+    deliveryId?: number
+    delivererId?: string
+    deliveryDate?: string // DateTime
+    filename?: string
 }

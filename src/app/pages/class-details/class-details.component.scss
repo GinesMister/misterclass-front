@@ -1,3 +1,5 @@
+@import "../../../colors.scss";
+
 $primary-color: #4285f4;
 $secondary-color: #ebebeb;
 $background-color: #f1f3f4;
@@ -77,4 +79,35 @@ h2 {
     color: lightgray;
     margin-top: 150px;
     text-align: center;
+}
+
+span.btn.btn-primary {
+    background-color: $homepage-create-button-color;
+    color: $homepage-create-button-textcolor;
+
+    &:hover {
+        background-color: lighten($homepage-create-button-color, 10%);
+    }
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1;
+}
+
+.content {
+    pointer-events: none;
+}
+
+app-create-update-unit {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
 }

@@ -41,9 +41,13 @@ export class SubjectService {
   // Units
   createUpdateUnit(unit: Unit, isNew = true) {
     if (isNew) {
-      this.subjectData?.units?.push(unit)
-      this.subjectApi.createUnit(this.subjectData?.subjectId!, unit).subscribe(() => { })
-    } else this.subjectApi.updateUnit(unit.unitId!, unit).subscribe(() => { })
+      this.subjectApi.createUnit(this.subjectData?.subjectId!, unit).subscribe(() => { 
+        this.updateSubjectData()
+      })
+    } else this.subjectApi.updateUnit(unit.unitId!, unit).subscribe(() => {
+      this.updateSubjectData
+    })
+    console.log(unit)
     this.sortUnits()
   }
 
@@ -63,11 +67,9 @@ export class SubjectService {
     })
   }
 
-  // Sort
+  // Sort elements
   private sortUnits() {
-    console.log(this.subjectData?.units!)
     this.subjectData?.units!.sort((a, b) => a.title!.localeCompare(b.title!))
-    console.log(this.subjectData?.units!)
   }
   private sortTasks() {
     for (const unit of this.subjectData?.units!) {

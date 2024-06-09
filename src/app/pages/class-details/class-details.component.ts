@@ -13,6 +13,10 @@ import { Task, Unit } from '../../models/subjectDTO';
 export class ClassDetailsComponent implements OnInit {
   
   subjectCode: string = ''
+
+  isCreateUnitVisible = false
+
+  unitToUpdate!: Unit | undefined
   
   constructor(
     private route: ActivatedRoute,
@@ -27,11 +31,22 @@ export class ClassDetailsComponent implements OnInit {
     
     this.route.params.subscribe(params => {
       this.subjectCode = params['id']
-      this.subjectService.updateSubjectData(
-        this.loginInfo.userData?.subjectsSubscribed.find(
+
+      // Check on subscribed
+      let subjectId = this.loginInfo.userData?.subjectsSubscribed.find(
+        subject => subject.accessCode === this.subjectCode
+      )?.subjectId
+      this.loginInfo.role = 'student'
+
+      // Check on created
+      if (!subjectId) {
+        subjectId = this.loginInfo.userData?.subjectsCreated.find(
           subject => subject.accessCode === this.subjectCode
         )?.subjectId
-      )
+        this.loginInfo.role = 'teacher'
+      }
+
+      this.subjectService.updateSubjectData(subjectId)
       // JUST FOR TESTING
 
       // Create Unit
@@ -57,23 +72,35 @@ export class ClassDetailsComponent implements OnInit {
     })
   }
 
+  onUpdateUnit(unit: Unit) {
+    this.unitToUpdate = unit
+    this.switchCreateUnitVisible()
+  }
+
+  onCreateUnit() {
+    this.unitToUpdate = undefined
+    this.switchCreateUnitVisible()
+  }
+
+  switchCreateUnitVisible = () => this.isCreateUnitVisible = !this.isCreateUnitVisible
+
   isSubjectColorDark() {
     return isColorDark(this.subjectService.subjectData?.color!)
   }
 
   // Develop features
-  file?: File
-  onUploadConfirm() {
-    console.log(this.file)
-    if (!this.file) {
-      console.log('Add a file first')
-      return
-    }
+  // file?: File
+  // onUploadConfirm() {
+  //   console.log(this.file)
+  //   if (!this.file) {
+  //     console.log('Add a file first')
+  //     return
+  //   }
 
-    this.subjectService.createDelivery(new Task (1), this.file)
-  }
+  //   this.subjectService.createDelivery(new Task (1), this.file)
+  // }
 
-  onUpload(event: any) {
-    this.file = event.target.files[0]
-  }
+  // onUpload(event: any) {
+  //   this.file = event.target.files[0]
+  // }
 }

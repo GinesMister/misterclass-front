@@ -1,0 +1,10 @@
+<div class="container">
+  <h2 *ngIf="!unit">Crear unidad</h2>
+  <h2 *ngIf="unit">Cambiar unidad</h2>
+  <form [formGroup]="unitForm" (ngSubmit)="createUpdateUnit()">
+    <p>Ten en cuenta que las unidades se ordenan por nombre</p>
+    <input type="text" formControlName="title" placeholder="Nombre de la unidad" required>
+    <button class="btn save" [disabled]="unitForm.invalid">Guardar</button>
+    <button class="btn cancel" (click)="cancel()">Cancelar</button>
+  </form>
+</div>

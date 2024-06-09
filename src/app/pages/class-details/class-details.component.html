@@ -12,14 +12,24 @@
             {{subjectService.subjectData?.teacher?.email}}
         </span></p>
     </header>
+    <span class="btn btn-primary"
+        *ngIf="loginInfo.role == 'teacher'"
+        (click)="onCreateUnit()"
+    > + Crear unidad </span>
     <h2 *ngIf="subjectService.subjectData?.units?.length == 0">
-        El creador todavía no ha publicado contenido
+        <ng-container *ngIf="loginInfo.role == 'teacher'">Todavía no has publicado contenido</ng-container>
+        <ng-container *ngIf="loginInfo.role == 'student'">El creador todavía no ha publicado contenido</ng-container>
     </h2>
     <div class="units" *ngFor="let unit of subjectService.subjectData?.units">
         <div class="unit">
-            <h2>{{unit.title}}</h2>
-            <h5 *ngIf="true">
+            <h2>{{unit.title}} 
+                <button class="btn edit-unit" (click)="onUpdateUnit(unit)"><i class="fas fa-pencil-alt"></i></button>
+            </h2>
+            <h5 *ngIf="loginInfo.role == 'student' && unit.tasks?.length! > 0">
                 Tareas pendientes <span class="date">Fecha de entrega</span>
+            </h5>
+            <h5 *ngIf="loginInfo.role == 'teacher' && unit.tasks?.length! > 0">
+                Tareas creadas <span class="date">Fecha de entrega</span>
             </h5>
             <ul class="tasks" *ngFor="let task of unit.tasks">
                 <li class="task">{{task.title}} 
@@ -30,9 +40,18 @@
     </div>
 
     <!-- Only for testing -->
-    <div class="develop">
+    <!-- <div class="develop">
         <h3>Develop tool</h3>
         <input type="file" (change)="onUpload($event)">
         <button (click)="onUploadConfirm()">Create delivery</button>
-    </div>
+    </div> -->
 </div>
+
+<div class="overlay" *ngIf="isCreateUnitVisible">
+    <div class="content"></div>
+    </div>
+<app-create-update-unit 
+    *ngIf="isCreateUnitVisible" 
+    (onSave)="switchCreateUnitVisible()"
+    [unit]="unitToUpdate!">
+</app-create-update-unit>
