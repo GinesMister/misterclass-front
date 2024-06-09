@@ -22,8 +22,12 @@
     </h2>
     <div class="units" *ngFor="let unit of subjectService.subjectData?.units">
         <div class="unit">
-            <h2>{{unit.title}} 
-                <button class="btn edit-unit" (click)="onUpdateUnit(unit)"><i class="fas fa-pencil-alt"></i></button>
+            <h2><span class="unit-link" routerLink="unidad/{{unit.unitId}}">{{unit.title}}</span>
+                <button class="btn edit-unit" 
+                        (click)="onUpdateUnit(unit)"
+                        *ngIf="loginInfo.role == 'teacher'">
+                    <i class="fas fa-pencil-alt"></i>
+                </button>
             </h2>
             <h5 *ngIf="loginInfo.role == 'student' && unit.tasks?.length! > 0">
                 Tareas pendientes <span class="date">Fecha de entrega</span>

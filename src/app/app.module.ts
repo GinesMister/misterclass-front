@@ -18,8 +18,9 @@ import { UserApiService } from './services/server-petitions/api/user-api.service
 import { SubscribeSubjectComponent } from './pages/subscribe-subject/subscribe-subject.component';
 import { ClassDetailsComponent } from './pages/class-details/class-details.component';
 import { PipesModule } from './pipes/pipes-module.component';
-import { CreateUpdateUnitComponent } from './components/create-unit/create-update-unit.component';
+import { CreateUpdateUnitComponent } from './components/create-update-unit/create-update-unit.component';
 import { UnitDetailsComponent } from './pages/unit-details/unit-details.component';
+import { CreateUpdateTheoryComponent } from './components/create-update-theory/create-update-theory.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { UnitDetailsComponent } from './pages/unit-details/unit-details.componen
     SubscribeSubjectComponent,
     ClassDetailsComponent,
     CreateUpdateUnitComponent,
-    UnitDetailsComponent
+    UnitDetailsComponent,
+    CreateUpdateTheoryComponent
   ],
   imports: [
     BrowserModule,

@@ -7,6 +7,7 @@ import { SingUpComponent } from './pages/login-signup/sing-up/sing-up.component'
 import { CreateSubjectComponent } from './pages/create-subject/create-subject.component';
 import { SubscribeSubjectComponent } from './pages/subscribe-subject/subscribe-subject.component';
 import { ClassDetailsComponent } from './pages/class-details/class-details.component';
+import { UnitDetailsComponent } from './pages/unit-details/unit-details.component';
 
 const routes: Routes = [
   {path: '', component: HomepageComponent},
@@ -15,6 +16,7 @@ const routes: Routes = [
   {path: 'crear-clase', component: CreateSubjectComponent},
   {path: 'subscribirse-clase', component: SubscribeSubjectComponent},
   {path: 'clase/:id', component: ClassDetailsComponent},
+  {path: 'clase/:id/unidad/:unitId', component: UnitDetailsComponent},
   {path: '**', component: NotFoundComponent}
 ];
 
