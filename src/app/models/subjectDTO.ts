@@ -32,6 +32,10 @@ export class Unit {
 }
 
 export class TheoryElement {
+    constructor(theoryElementId?: number) {
+        this.theoryElementId = theoryElementId
+    }
+
     theoryElementId?: number
     title?: string
     description?: string

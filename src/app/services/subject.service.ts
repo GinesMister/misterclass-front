@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Subject, Task, Unit } from '../models/subjectDTO';
+import { Subject, Task, TheoryElement, Unit } from '../models/subjectDTO';
 import { SubjectApiService } from './server-petitions/api/subject-api.service';
 import { Observable, map } from 'rxjs';
 import { LoginInfoService } from './login-info.service';
@@ -49,6 +49,10 @@ export class SubjectService {
     })
     console.log(unit)
     this.sortUnits()
+  }
+
+  createTheoryElement(unit: Unit, theoryElement: TheoryElement) {
+    this.subjectApi
   }
 
   // Tasks

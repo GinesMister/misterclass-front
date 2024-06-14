@@ -53,9 +53,9 @@
 
 <div class="overlay" *ngIf="isCreateUnitVisible">
     <div class="content"></div>
-    </div>
+</div>
 <app-create-update-unit 
     *ngIf="isCreateUnitVisible" 
-    (onSave)="switchCreateUnitVisible()"
+    (onAction)="switchCreateUnitVisible()"
     [unit]="unitToUpdate!">
 </app-create-update-unit>

@@ -10,7 +10,7 @@
         >
             <h1>Clases suscritas
                 <span class="btn btn-primary"
-                    (click)="router.navigate(['/subscribirse-clase'])"
+                    (click)="switchCreateSubjectVisible()"
                 > + Suscribirse a una clase </span>
             </h1>
             <h2 class="empty-classes" *ngIf="loginInfo.userData?.subjectsSubscribed?.length == 0">
@@ -69,3 +69,12 @@
         </ng-container>
     </div>
 </main>
+
+<div class="overlay" *ngIf="isCreateSubjectVisible">
+    <div class="content">
+    </div>
+</div>
+<app-subscribe-subject 
+    *ngIf="isCreateSubjectVisible"
+    (onAciton)="switchCreateSubjectVisible()">
+</app-subscribe-subject>

@@ -1,3 +1,17 @@
-<p>
-  create-update-theory works!
-</p>
+<div class="container">
+  <h2 *ngIf="!theoryElement">Crear elemento teórico</h2>
+  <h2 *ngIf="theoryElement">Cambiar elemento teórico</h2>
+  <form [formGroup]="theoryElementForm" (ngSubmit)="createUpdatetheoryElement()">
+    <input type="text" formControlName="title" placeholder="Nombre del elemento teórico" required>
+    <input type="text" formControlName="description" placeholder="Descripción" required>
+    <input type="file" id="file" name="file">
+    <div class="file-upload-wrapper">
+      <label for="file" class="file-upload-label">
+        <span>Selecciona el archivo</span>
+      </label>
+    </div>
+    <button class="btn save" [disabled]="theoryElementForm.invalid">Guardar</button>
+    <button class="btn cancel" (click)="cancel()">Cancelar</button>
+  </form>
+</div>
+<!-- TODO -->

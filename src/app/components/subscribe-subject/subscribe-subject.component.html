@@ -1,0 +1,15 @@
+<div class="container">
+  <h2>Subscribirse</h2>
+  <form [formGroup]="subscribeForm" (ngSubmit)="onSubmit()">
+    <p>Introduce un código de clase existente</p>
+
+    <!-- Alerta de error de creación -->
+      <div *ngIf="subscribeError" class="alert alert-danger mt-2" role="alert">
+        <i class="fas fa-exclamation-circle"></i> Código erróneo, recuerda también que no te puedes subscribirte a tus clases creadas
+      </div>
+      
+    <input type="text" formControlName="accessCode" placeholder="X X X X X X" required>
+    <button class="btn save" [disabled]="subscribeForm.invalid">Subscribirse</button>
+    <button class="btn cancel" (click)="cancel()">Cancelar</button>
+  </form>
+</div>

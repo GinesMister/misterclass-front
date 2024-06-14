@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { DataConnetion } from '../dataConnection';
 import { Observable } from 'rxjs';
-import { Subject, Task, Unit } from '../../../models/subjectDTO';
+import { Subject, Task, TheoryElement, Unit } from '../../../models/subjectDTO';
 
 @Injectable({
   providedIn: 'root'
@@ -45,6 +45,11 @@ constructor(private http: HttpClient) { }
   
   updateTask(taskId: number, task: Task): Observable<void> {
     return this.http.put<void>(`${this.url}/task/update?taskId=${taskId}`, task)
+  }
+
+  // TheoryElement
+  createTheoryElement(unitId: number, theoryElement: TheoryElement): Observable<void> {
+    return this.http.put<void>(`${this.url}/theoryElement/create?unitId=${unitId}`, theoryElement)
   }
 
   createDelivery(taskId: number, deliverId: string, file: File): Observable<void> {

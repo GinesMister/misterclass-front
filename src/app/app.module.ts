@@ -15,7 +15,7 @@ import { CreateSubjectComponent } from './pages/create-subject/create-subject.co
 import { SubjectService } from './services/subject.service';
 import { SubjectApiService } from './services/server-petitions/api/subject-api.service';
 import { UserApiService } from './services/server-petitions/api/user-api.service';
-import { SubscribeSubjectComponent } from './pages/subscribe-subject/subscribe-subject.component';
+import { SubscribeSubjectComponent } from './components/subscribe-subject/subscribe-subject.component';
 import { ClassDetailsComponent } from './pages/class-details/class-details.component';
 import { PipesModule } from './pipes/pipes-module.component';
 import { CreateUpdateUnitComponent } from './components/create-update-unit/create-update-unit.component';

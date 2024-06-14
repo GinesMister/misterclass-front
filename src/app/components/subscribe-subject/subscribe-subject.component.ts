@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { LoginInfoService } from '../../services/login-info.service';
 import { SubjectService } from '../../services/subject.service';
@@ -11,6 +11,8 @@ import { SubjectApiService } from '../../services/server-petitions/api/subject-a
   styleUrls: ['./subscribe-subject.component.scss']
 })
 export class SubscribeSubjectComponent implements OnInit {
+
+  @Output() onAciton: EventEmitter<void> = new EventEmitter<void>()
 
   subscribeForm: FormGroup
   subscribeError = false
@@ -37,5 +39,9 @@ export class SubscribeSubjectComponent implements OnInit {
       if (res) this.loginInfo.updateUserData(undefined, true)
       else this.subscribeError = true
     })
+  }
+
+  cancel() {
+    this.onAciton.emit()
   }
 }

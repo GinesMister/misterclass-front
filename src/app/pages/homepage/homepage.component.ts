@@ -11,6 +11,8 @@ import { isColorDark } from '../../functions/colorData';
 })
 export class HomepageComponent implements OnInit {
 
+  isCreateSubjectVisible = false
+
   constructor (
     public loginInfo: LoginInfoService,
     public router: Router
@@ -24,4 +26,6 @@ export class HomepageComponent implements OnInit {
   isCardDark(subject: Subject) {
     return isColorDark(subject.color!)
   }
+
+  switchCreateSubjectVisible = () => this.isCreateSubjectVisible = !this.isCreateSubjectVisible
 }

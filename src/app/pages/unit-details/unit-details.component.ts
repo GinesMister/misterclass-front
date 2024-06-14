@@ -14,6 +14,8 @@ export class UnitDetailsComponent implements OnInit {
 
   unit: Unit = new Unit() 
 
+  isCreateTheoryVisible = false
+
   constructor(
     private route: ActivatedRoute,
     private router: Router,
@@ -41,4 +43,6 @@ export class UnitDetailsComponent implements OnInit {
   isSubjectColorDark() {
     return isColorDark(this.subjectService.subjectData?.color!)
   }
+
+  switchCreateTheoryVisible = () => this.isCreateTheoryVisible = !this.isCreateTheoryVisible
 }

@@ -52,16 +52,18 @@ export class ClassDetailsComponent implements OnInit {
       // Create Unit
       // setTimeout(() => {
       //   this.subjectService.createUpdateUnit(new Unit('Unidad 0: Repaso del curso pasado'))
+      //   this.subjectService.createUpdateUnit(new Unit('Unidad 1: Poliedros: pirámides y prismas'))
+      //   this.subjectService.createUpdateUnit(new Unit('Unidad 2: Comparación de números'))
       // }, 3000);
 
       // Create Task
       // setTimeout(() => {
       //   const task = new Task()
-      //   task.title = 'Esta tarea tarea se entre antes que la primera'
-      //   task.description = 'Visualiza este vídeo y resonde a las preguntas que se adjuntan en el PDF'
-      //   task.deadline = '2023-04-06T17:17:09.075Z'
+      //   task.title = 'Dibuja un prisma rectangular y etiqueta sus caras, aristas y vértices.'
+      //   task.description = ''
+      //   task.deadline = '2023-04-06T17:23:59.075Z'
       //   this.subjectService.createUpdateTask(this.subjectService.subjectData?.units![0]!, task)
-      // }, 4000);
+      // }, 2000);
 
       // Update Task
       // setTimeout(() => {

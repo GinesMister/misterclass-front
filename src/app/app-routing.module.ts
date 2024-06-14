@@ -5,7 +5,7 @@ import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { LoginComponent } from './pages/login-signup/login/login.component';
 import { SingUpComponent } from './pages/login-signup/sing-up/sing-up.component';
 import { CreateSubjectComponent } from './pages/create-subject/create-subject.component';
-import { SubscribeSubjectComponent } from './pages/subscribe-subject/subscribe-subject.component';
+import { SubscribeSubjectComponent } from './components/subscribe-subject/subscribe-subject.component';
 import { ClassDetailsComponent } from './pages/class-details/class-details.component';
 import { UnitDetailsComponent } from './pages/unit-details/unit-details.component';
 

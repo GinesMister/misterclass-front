@@ -10,7 +10,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class CreateUpdateUnitComponent implements OnInit {
 
-  @Output() onSave: EventEmitter<void> = new EventEmitter<void>()
+  @Output() onAction: EventEmitter<void> = new EventEmitter<void>()
   @Input() unit!: Unit
 
   unitForm!: FormGroup
@@ -37,10 +37,10 @@ export class CreateUpdateUnitComponent implements OnInit {
       this.subjectService.createUpdateUnit(newUnit)
     }
 
-    this.onSave.emit()
+    this.onAction.emit()
   }
   
   cancel() {
-    this.onSave.emit()
+    this.onAction.emit()
   }
 }

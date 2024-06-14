@@ -6,7 +6,7 @@
     >
         <nav>
             <button class="back-button" routerLink="../..">
-                Volver al tablón de {{subjectService.subjectData?.name}}
+                <i class="fas fa-arrow-left"></i> {{subjectService.subjectData?.name}}
             </button>
             <ul class="nav-options">
                 <li class="nav-item active" 
@@ -25,12 +25,20 @@
             <h2 class="title">Teoría de la Unidad
                 <span class="btn btn-primary"
                     *ngIf="loginInfo.role == 'teacher'"
-                    (click)="updateUnitFromSubjectData()"
+                    (click)="switchCreateTheoryVisible()"
                 > + Crear un elemento de teoría </span>
             </h2>
             <ul class="theory-list" *ngFor="let theoryElement of unit.theoryElements">
                 <li class="theory-item">
                     <a href="teoria1.html">{{theoryElement.title}}</a>
+                </li>
+            </ul>
+            <ul class="theory-list">
+                <li class="theory-item">
+                    <a href="teoria1.html">Las pirámides</a>
+                </li>
+                <li class="theory-item">
+                    <a href="teoria1.html">Las esferas</a>
                 </li>
             </ul>
             <h2 class="empty" *ngIf="unit.theoryElements?.length == 0">
@@ -39,3 +47,12 @@
         </section>
     </div>
 </div>
+
+<div class="overlay" *ngIf="isCreateTheoryVisible">
+    <div class="content">
+    </div>
+</div>
+<app-create-update-theory
+    *ngIf="isCreateTheoryVisible"
+    (onAction)="switchCreateTheoryVisible()">
+</app-create-update-theory>
