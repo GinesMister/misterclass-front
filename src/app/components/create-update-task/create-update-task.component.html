@@ -1,17 +1,19 @@
 <div class="container">
-  <h2 *ngIf="!theoryElement">Crear elemento teórico</h2>
-  <h2 *ngIf="theoryElement">Cambiar elemento teórico</h2>
-  <form [formGroup]="theoryElementForm" (ngSubmit)="createUpdatetheoryElement()">
-    <input type="text" formControlName="title" placeholder="Nombre del elemento teórico" required>
+  <h2 *ngIf="!task">Crear tarea</h2>
+  <h2 *ngIf="task">Modificar tarea</h2>
+  <form [formGroup]="taskForm" (ngSubmit)="createUpdateTask()">
+    <input type="text" formControlName="title" placeholder="Título de la tarea" required>
     <!-- TODO Ampliar anchura -->
     <input type="text" class="description" formControlName="description" placeholder="Descripción" required>
+    <label>Fecha de entrega</label>
+    <input type="datetime-local" class="form-control" formControlName="deadline" placeholder="Fecha de entrega" required>
     <input type="file" id="file" name="file" (change)="onUpload($event)">
     <div class="file-upload-wrapper">
       <label for="file" class="file-upload-label">
         <span>Selecciona el archivo</span>
       </label>
     </div>
-    <button class="btn save" [disabled]="theoryElementForm.invalid || !theoryFile">Guardar</button>
+    <button class="btn save" [disabled]="taskForm.invalid || !taskFile">Guardar</button>
     <button class="btn cancel" (click)="cancel()">Cancelar</button>
   </form>
 </div>

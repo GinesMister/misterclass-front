@@ -21,6 +21,8 @@ import { PipesModule } from './pipes/pipes-module.component';
 import { CreateUpdateUnitComponent } from './components/create-update-unit/create-update-unit.component';
 import { UnitDetailsComponent } from './pages/unit-details/unit-details.component';
 import { CreateUpdateTheoryComponent } from './components/create-update-theory/create-update-theory.component';
+import { TheoryDetailsComponent } from './pages/theory-details/theory-details.component';
+import { CreateUpdateTask } from './components/create-update-task/create-update-task.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +36,9 @@ import { CreateUpdateTheoryComponent } from './components/create-update-theory/c
     ClassDetailsComponent,
     CreateUpdateUnitComponent,
     UnitDetailsComponent,
-    CreateUpdateTheoryComponent
+    CreateUpdateTheoryComponent,
+    TheoryDetailsComponent,
+    CreateUpdateTask
   ],
   imports: [
     BrowserModule,

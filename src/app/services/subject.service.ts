@@ -28,13 +28,15 @@ export class SubjectService {
     return this.subjectApi.subscribeStudentToSubject(userId!, subjectCode)
   }
 
-  updateSubjectData(subjectId?: number) {
+  updateSubjectData(subjectId?: number, onUpdateAction: () => void = () => {}) {
     if (subjectId == undefined) subjectId = this.subjectData?.subjectId
     this.subjectApi.getFullSubjectDataById(subjectId!).subscribe(res => {
       this.subjectData = res
       this.sortUnits()
     }).add(() => {
       this.sortTasks()
+      console.log(this.subjectData)
+      onUpdateAction()
     })
   }
 
@@ -43,32 +45,29 @@ export class SubjectService {
     if (isNew) {
       this.subjectApi.createUnit(this.subjectData?.subjectId!, unit).subscribe(() => { 
         this.updateSubjectData()
+        this.sortUnits()
       })
     } else this.subjectApi.updateUnit(unit.unitId!, unit).subscribe(() => {
-      this.updateSubjectData
+      this.updateSubjectData()
+      this.sortUnits()
     })
-    console.log(unit)
-    this.sortUnits()
   }
 
-  createTheoryElement(unit: Unit, theoryElement: TheoryElement) {
-    this.subjectApi
+  // TheoryElement
+  createTheoryElement(unit: Unit, theoryElement: TheoryElement, file: File): Observable<void> {
+    return this.subjectApi.createTheoryElement(unit.unitId!, theoryElement, file)
   }
 
   // Tasks
-  createUpdateTask(unit: Unit, task: Task, isNew = true) {
+  createUpdateTask(unit: Unit, task: Task, file?: File, isNew = true): Observable<void> {
     if (isNew) {
-      unit.tasks!.push(task)
-      this.subjectApi.createTask(unit.unitId!, task).subscribe(() => { })
-    } else this.subjectApi.updateTask(unit.unitId!, task).subscribe(() => { })
-    this.sortTasks()
+      return this.subjectApi.createTask(unit.unitId!, task, file!)
+    } else return this.subjectApi.updateTask(unit.unitId!, task)
   }
 
   // Delivery
-  createDelivery(task: Task, file: File) {
-    this.subjectApi.createDelivery(task.taskId!, this.loginInfo.userData?.userId!,file).subscribe(res => {
-      
-    })
+  createDelivery(task: Task, file: File): Observable<void> {
+    return this.subjectApi.createDelivery(task.taskId!, this.loginInfo.userData?.userId!,file)
   }
 
   // Sort elements

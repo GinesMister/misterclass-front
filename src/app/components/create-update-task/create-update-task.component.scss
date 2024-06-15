@@ -85,3 +85,16 @@ p {
     color: rgb(160, 160, 160);
     text-align: left;
 }
+
+$primary-color: #007bff;
+$border-radius: 0.25rem;
+$input-focus-border-color: lighten($primary-color, 20%);
+.form-control {
+    margin-bottom: 20px;
+    border-radius: $border-radius;
+
+    &:focus {
+      border-color: $input-focus-border-color;
+      box-shadow: 0 0 0 0.2rem rgba($input-focus-border-color, 0.25);
+    }
+  }

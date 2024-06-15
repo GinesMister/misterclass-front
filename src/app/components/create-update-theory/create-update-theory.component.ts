@@ -1,7 +1,9 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { TheoryElement } from '../../models/subjectDTO';
+import { TheoryElement, Unit } from '../../models/subjectDTO';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { SubjectService } from '../../services/subject.service';
+import { ActivatedRoute } from '@angular/router';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-create-update-theory',
@@ -10,10 +12,12 @@ import { SubjectService } from '../../services/subject.service';
 })
 export class CreateUpdateTheoryComponent implements OnInit {
 
-  @Output() onAction: EventEmitter<void> = new EventEmitter<void>()
+  @Output() onAction: EventEmitter<void | Observable<void>> = new EventEmitter<void | Observable<void>>()
   @Input() theoryElement!: TheoryElement
+  @Input() unit!: Unit
 
   theoryElementForm!: FormGroup
+  theoryFile!: File
 
   constructor(
     private subjectService: SubjectService,
@@ -27,21 +31,24 @@ export class CreateUpdateTheoryComponent implements OnInit {
     });
   }
 
+  onUpload($event: any) {
+    this.theoryFile = $event.target.files[0]
+  }
+
   createUpdatetheoryElement() {
-    // TODO añadir condición de subir archivo
-    if (!this.theoryElementForm.valid) return
+    if (!this.theoryElementForm.valid && !this.theoryFile) return
 
     if (this.theoryElement) {
       this.theoryElement.title = this.theoryElementForm.value.title
-      // this.subjectService.createTheoryElement(this.theoryElement, false) 
+      this.theoryElement.description = this.theoryElementForm.value.description
+      // Update
     } else {
       const newTheoryElement = new TheoryElement()
       newTheoryElement.description = this.theoryElementForm.value.description
-      // TODO
-      // this.subjectService.createUpdateTheoryElement(newTheoryElement)
+      newTheoryElement.title = this.theoryElementForm.value.title
+      this.onAction.emit(this.subjectService.createTheoryElement(this.unit, newTheoryElement, this.theoryFile))
     }
 
-    this.onAction.emit()
   }
   
   cancel() {

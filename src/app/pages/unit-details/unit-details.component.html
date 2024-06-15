@@ -9,36 +9,32 @@
                 <i class="fas fa-arrow-left"></i> {{subjectService.subjectData?.name}}
             </button>
             <ul class="nav-options">
-                <li class="nav-item active" 
-                    [ngStyle]="{'color': isSubjectColorDark() ? '#ededed' : 'black' }">
+                <li class="nav-item active"
+                    [ngClass]="{'active': activedTab == 'theory'}"
+                    [ngStyle]="{'color': isSubjectColorDark() ? '#ededed' : 'black' }"
+                    (click)="activedTab = 'theory'">
                     Teoría
                 </li>
                 <li class="nav-item"
-                    [ngStyle]="{'color': isSubjectColorDark() ? '#ededed' : 'black' }">
+                    [ngClass]="{'active': activedTab == 'task'}"
+                    [ngStyle]="{'color': isSubjectColorDark() ? '#ededed' : 'black' }"
+                    (click)="activedTab = 'task'">
                     Tareas
                 </li>
             </ul>
         </nav>
     </header>
-    <div class="content">
+    <div class="content" *ngIf="activedTab == 'theory'">
         <section class="theory active">
-            <h2 class="title">Teoría de la Unidad
+            <h2 class="title">Teoría de la unidad
                 <span class="btn btn-primary"
                     *ngIf="loginInfo.role == 'teacher'"
-                    (click)="switchCreateTheoryVisible()"
+                    (click)="switchCreateActionsVisible()"
                 > + Crear un elemento de teoría </span>
             </h2>
             <ul class="theory-list" *ngFor="let theoryElement of unit.theoryElements">
                 <li class="theory-item">
-                    <a href="teoria1.html">{{theoryElement.title}}</a>
-                </li>
-            </ul>
-            <ul class="theory-list">
-                <li class="theory-item">
-                    <a href="teoria1.html">Las pirámides</a>
-                </li>
-                <li class="theory-item">
-                    <a href="teoria1.html">Las esferas</a>
+                    <a routerLink="teoria/{{theoryElement.theoryElementId}}">{{theoryElement.title}}</a>
                 </li>
             </ul>
             <h2 class="empty" *ngIf="unit.theoryElements?.length == 0">
@@ -46,13 +42,38 @@
             </h2>
         </section>
     </div>
+
+    <div class="content" *ngIf="activedTab == 'task'">
+        <section class="theory active">
+            <h2 class="title">Tareas de la unidad
+                <span class="btn btn-primary"
+                    *ngIf="loginInfo.role == 'teacher'"
+                    (click)="switchCreateActionsVisible()"
+                > + Crear una nueva tarea </span>
+            </h2>
+            <ul class="theory-list" *ngFor="let task of unit.tasks">
+                <li class="theory-item">
+                    <a routerLink="teoria/{{task.taskId}}">{{task.title}}</a>
+                </li>
+            </ul>
+            <h2 class="empty" *ngIf="unit.tasks?.length == 0">
+                Todavía no se ha creado contenido
+            </h2>
+        </section>
+    </div>
 </div>
 
-<div class="overlay" *ngIf="isCreateTheoryVisible">
+<div class="overlay" *ngIf="isCreateActionsVisible">
     <div class="content">
     </div>
 </div>
 <app-create-update-theory
-    *ngIf="isCreateTheoryVisible"
-    (onAction)="switchCreateTheoryVisible()">
+    *ngIf="isCreateActionsVisible && activedTab == 'theory'"
+    [unit]="unit"
+    (onAction)="switchCreateActionsVisible(); updateUnitFromSubjectData($event!)">
 </app-create-update-theory>
+<app-create-update-task
+    *ngIf="isCreateActionsVisible && activedTab == 'task'"
+    [unit]="unit"
+    (onAction)="switchCreateActionsVisible(); updateUnitFromSubjectData($event!)">
+</app-create-update-task>

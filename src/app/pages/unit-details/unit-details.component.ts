@@ -4,6 +4,8 @@ import { LoginInfoService } from '../../services/login-info.service';
 import { SubjectService } from '../../services/subject.service';
 import { Unit } from '../../models/subjectDTO';
 import { isColorDark } from '../../functions/colorData';
+import { SubjectApiService } from '../../services/server-petitions/api/subject-api.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-unit-details',
@@ -12,15 +14,18 @@ import { isColorDark } from '../../functions/colorData';
 })
 export class UnitDetailsComponent implements OnInit {
 
-  unit: Unit = new Unit() 
+  unit: Unit = new Unit()
 
-  isCreateTheoryVisible = false
+  activedTab: 'theory' | 'task' = 'theory'
+
+  isCreateActionsVisible = false
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
     public loginInfo: LoginInfoService,
-    public subjectService: SubjectService
+    public subjectService: SubjectService,
+    public subjectApi: SubjectApiService
   ) { }
 
   ngOnInit() {
@@ -28,21 +33,31 @@ export class UnitDetailsComponent implements OnInit {
       this.router.navigate(['/iniciar-sesion']);
     
     this.route.params.subscribe(params => {
-      console.log(this.unit)
       this.unit.unitId = params['unitId']
       this.updateUnitFromSubjectData()
     })
   }
 
-  updateUnitFromSubjectData() {
-    this.unit = this.subjectService.subjectData?.units?.find(
-      unit => unit.unitId == this.unit.unitId
-    )!
+  updateUnitFromSubjectData($previusAction?: Observable<any>) {
+    if (!$previusAction) {
+      this.unit = this.subjectService.subjectData?.units?.find(
+        unit => unit.unitId == this.unit.unitId
+      )!
+      return
+    }
+
+    $previusAction.subscribe(() => {
+      this.subjectService.updateSubjectData(undefined, () => {
+        this.unit = this.subjectService.subjectData?.units?.find(
+          unit => unit.unitId == this.unit.unitId
+        )!
+      })
+    })
   }
 
   isSubjectColorDark() {
     return isColorDark(this.subjectService.subjectData?.color!)
   }
 
-  switchCreateTheoryVisible = () => this.isCreateTheoryVisible = !this.isCreateTheoryVisible
+  switchCreateActionsVisible = () => this.isCreateActionsVisible = !this.isCreateActionsVisible
 }

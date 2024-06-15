@@ -64,6 +64,7 @@ section.active {
     list-style: none;
     padding: 0;
     margin: 0;
+    margin-top: 10px;
 }
 
 .theory-item {
@@ -118,4 +119,5 @@ h2.title {
             background-color: lighten($homepage-create-button-color, 10%);
         }
     }
+    margin-bottom: 30px;
 }

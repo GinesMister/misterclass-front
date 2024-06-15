@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { DataConnetion } from '../dataConnection';
-import { Observable } from 'rxjs';
+import { Observable, from } from 'rxjs';
 import { Subject, Task, TheoryElement, Unit } from '../../../models/subjectDTO';
 
 @Injectable({
@@ -39,8 +39,11 @@ constructor(private http: HttpClient) { }
   }
   
   // Task
-  createTask(unitId: number, task: Task): Observable<void> {
-    return this.http.put<void>(`${this.url}/task/create?unitId=${unitId}`, task)
+  createTask(unitId: number, task: Task, file: File): Observable<void> {
+    const formData: FormData = new FormData()
+    formData.append('file', file)
+    formData.append('task', new Blob([JSON.stringify(task)], { type: 'application/json' }))
+    return this.http.put<void>(`${this.url}/task/create?unitId=${unitId}`, formData)
   }
   
   updateTask(taskId: number, task: Task): Observable<void> {
@@ -48,13 +51,17 @@ constructor(private http: HttpClient) { }
   }
 
   // TheoryElement
-  createTheoryElement(unitId: number, theoryElement: TheoryElement): Observable<void> {
-    return this.http.put<void>(`${this.url}/theoryElement/create?unitId=${unitId}`, theoryElement)
-  }
-
-  createDelivery(taskId: number, deliverId: string, file: File): Observable<void> {
+  createTheoryElement(unitId: number, theoryElement: TheoryElement, file: File): Observable<void> {
     const formData: FormData = new FormData()
     formData.append('file', file)
-    return this.http.put<void>(`${this.url}/delivery/create?taskId=${taskId}&delivererId=${deliverId}`, formData)
+    formData.append('theoryElement', new Blob([JSON.stringify(theoryElement)], { type: 'application/json' }))
+    return this.http.put<void>(`${this.url}/theoryelement/create?unitId=${unitId}`, formData)
+  }
+
+  //Delivery
+  createDelivery(taskId: number, delivererId: string, file: File): Observable<void> {
+    const formData: FormData = new FormData()
+    formData.append('file', file)
+    return this.http.put<void>(`${this.url}/delivery/create?taskId=${taskId}&delivererId=${delivererId}`, formData)
   }
 }

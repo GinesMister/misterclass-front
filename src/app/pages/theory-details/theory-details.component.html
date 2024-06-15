@@ -1,0 +1,14 @@
+<!-- Main Content -->
+<app-header-page></app-header-page>
+<main class="container mt-5">
+  <button class="back-button" routerLink="../..">
+    <i class="fas fa-arrow-left"></i> Volver a la teoría
+  </button>
+  <h1 class="mt-5">{{theoryElement.title}}</h1>
+  <p>{{theoryElement.description}}</p>
+  <div class="text-center mt-4 file">
+      <a href="{{downloadLink}}" class="btn btn-outline-primary">
+          <i class="fas fa-file-alt"></i> {{theoryElement.filename}}
+      </a>
+  </div>
+</main>
