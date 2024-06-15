@@ -27,28 +27,9 @@
 }
 
 
-app-create-update-unit {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 2;
-}
-app-subscribe-subject {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 2;
-}
-app-create-update-theory {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 2;
-}
-app-create-update-task {
+app-create-update-unit, app-subscribe-subject,
+app-create-update-theory, app-create-update-task,
+app-create-delivery, app-mark-delivery {
     position: fixed;
     top: 50%;
     left: 50%;

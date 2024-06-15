@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Subject, Task, TheoryElement, Unit } from '../models/subjectDTO';
+import { Delivery, Subject, Task, TheoryElement, Unit } from '../models/subjectDTO';
 import { SubjectApiService } from './server-petitions/api/subject-api.service';
 import { Observable, map } from 'rxjs';
 import { LoginInfoService } from './login-info.service';
@@ -34,8 +34,9 @@ export class SubjectService {
       this.subjectData = res
       this.sortUnits()
     }).add(() => {
+      if (this.loginInfo.role == 'student')
+        this.updateIsDeliveredForTasks()
       this.sortTasks()
-      console.log(this.subjectData)
       onUpdateAction()
     })
   }
@@ -68,6 +69,20 @@ export class SubjectService {
   // Delivery
   createDelivery(task: Task, file: File): Observable<void> {
     return this.subjectApi.createDelivery(task.taskId!, this.loginInfo.userData?.userId!,file)
+  }
+
+  markDelivery(delivery: Delivery, mark: number): Observable<void> {
+    return this.subjectApi.markDelivery(delivery.deliveryId!, mark)
+  }
+
+  updateIsDeliveredForTasks() {
+    for (const unit of this.subjectData?.units!) {
+      for (const task of unit.tasks!) {
+        if (task.deliveries?.find(delivery => delivery.delivererId === this.loginInfo.userData?.userId) != undefined) {
+          task.isDelivered = true
+        }
+      }
+    }
   }
 
   // Sort elements

@@ -64,4 +64,8 @@ constructor(private http: HttpClient) { }
     formData.append('file', file)
     return this.http.put<void>(`${this.url}/delivery/create?taskId=${taskId}&delivererId=${delivererId}`, formData)
   }
+
+  markDelivery(deliveryId: number, mark: number): Observable<void> {
+    return this.http.put<void>(`${this.url}/delivery/mark?deliveryId=${deliveryId}&mark=${mark}`, null)
+  }
 }

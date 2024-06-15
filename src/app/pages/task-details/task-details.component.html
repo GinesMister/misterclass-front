@@ -1,0 +1,90 @@
+<!-- Main Content -->
+<app-header-page></app-header-page>
+<main class="container mt-5">
+  <button class="back-button" routerLink="../..">
+    <i class="fas fa-arrow-left"></i> Volver a la teoría
+  </button>
+  <h1 class="mt-5">{{task.title}}</h1>
+  <p>{{task.description}}</p>
+  <div class="text-center mt-4 file">
+      <a href="{{downloadLink}}" class="btn btn-outline-primary">
+          <i class="fas fa-file-alt"></i> {{task.filename}}
+      </a>
+  </div>
+  <div class="mt-5">
+    <h4>Fecha de Entrega: <span class="font-weight-normal">{{task.deadline! | europeanDate}} a las {{task.deadline! | hourFormatter}}h</span></h4>
+  </div>
+
+  <!-- Teacher -->
+  <div class="mt-4" *ngIf="loginInfo.role == 'teacher'">
+    
+    <h4 *ngIf="task.deliveries?.length! < 1"> 
+      Todavía no se han realizado entregas
+    </h4>
+    <ng-container *ngIf="task.deliveries?.length! > 0">
+      <h4>Entregas</h4>
+      <table class="table table-striped mt-2">
+          <thead>
+              <tr>
+                <th scope="col">Nombre de usuario</th>
+                <th scope="col">Archivo</th>
+                <th scope="col">Fecha de entrega</th>
+                <th scope="col">Calificación</th>
+              </tr>
+          </thead>
+          <tbody>
+              <tr *ngFor="let delivery of task.deliveries">
+                <td>{{delivery.delivererId}}</td>
+                <td><a href="{{deliveryDownloadBaseLink + delivery.deliveryId + '/' + delivery.filename}}">
+                  <i class="fas fa-file-alt"></i> {{delivery.filename}}
+                </a></td>
+                <td>{{delivery.deliveryDate! | europeanDate}} {{delivery.deliveryDate! | hourFormatter}}</td>
+                <td>
+                  {{delivery.mark ? (delivery.mark |  decimalComma): 'Sin calificación'}}
+                  <button class="btn edit-unit" 
+                        (click)="markDelivery(delivery)">
+                    <i class="fas fa-pencil-alt"></i>
+                </button>
+                </td>
+              </tr>
+          </tbody>
+      </table>
+
+    </ng-container>
+</div>
+
+<!-- Student -->
+  <ng-container *ngIf="loginInfo.role == 'student'">
+    <div class="alert alert-info"
+        *ngIf="task.isDelivered">
+      Esta tarea ya la entregaste el día {{delivery?.deliveryDate! | europeanDate}}
+      a las {{delivery?.deliveryDate! | hourFormatter}}
+      <span class="file"><i class="fas fa-file-alt"></i>
+        <a href="{{deliveryDownloadBaseLink + delivery!.deliveryId + '/' + delivery!.filename}}">
+          {{delivery?.filename}}
+        </a>
+      </span>
+    </div>
+
+    <button type="button" class="btn btn-success mt-5"
+        *ngIf="!task.isDelivered"
+        (click)="switchCreateDeliveryVisible()">
+      <i class="fas fa-upload"></i> Realizar Entrega
+    </button>
+
+  </ng-container>
+</main>
+
+<div class="overlay" *ngIf="isCreateDeliveryVisible || isMarkDeliveryVisible">
+  <div class="content"></div>
+</div>
+<app-create-delivery
+  *ngIf="isCreateDeliveryVisible"
+  [task]="task"
+  (onAction)="switchCreateDeliveryVisible(); updateData($event!)">
+</app-create-delivery>
+<app-mark-delivery
+  *ngIf="isMarkDeliveryVisible"
+  [delivery]="delivery!"
+  (onAction)="switchMarkDeliveryVisible(); updateData($event!)">
+</app-mark-delivery>

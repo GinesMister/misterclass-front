@@ -1,0 +1,13 @@
+<div class="container">
+  <h2 *ngIf="delivery">Calificar</h2>
+  <h2 *ngIf="!delivery">Cambiar calificación</h2>
+  <form [formGroup]="markForm" (ngSubmit)="markDelivery()">
+    <p>Puedes modificar la calificación en cualquier momento</p>
+    <input type="text" formControlName="mark" placeholder="Calificación" required>
+    <div *ngIf="markForm?.get('mark')?.invalid && markForm.get('mark')?.touched" class="text-danger">
+      El formato no es válido. Ej: 7,65.
+    </div>
+    <button class="btn save" [disabled]="markForm.invalid">Guardar</button>
+    <button class="btn cancel" (click)="cancel()">Cancelar</button>
+  </form>
+</div>

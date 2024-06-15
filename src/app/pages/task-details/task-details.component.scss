@@ -1,0 +1,84 @@
+@import "../../../colors.scss";
+
+$primary-color: $header-secondary-color;
+$button-background: lighten($primary-color, 30%);
+$button-hover-background: darken($primary-color, 10%);
+
+
+main {
+    h1 {
+
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+    }
+    p {
+        font-size: 1.25rem;
+        margin-bottom: 2rem;
+    }
+    .btn-outline-primary {
+        font-size: 1.1rem;
+        border-radius: 5px;
+        display: flex;
+        align-items: center;
+        i {
+            margin-right: 10px;
+        }
+        &:hover {
+            background-color: #007bff;
+            color: white;
+        }
+    }
+
+    .back-button {
+        background-color: $button-background;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 1em;
+        transition: background-color 0.3s ease, color 0.3s ease;
+        margin-left: 20px;
+    }
+    
+    .back-button:hover {
+        background-color: $button-hover-background;
+        color: white;
+    }
+
+    .file {width: 500px;}
+
+    h4 {
+        font-size: 1.5rem;
+        margin-top: 2rem;
+        .font-weight-normal {
+            font-weight: normal;
+        }
+    }
+
+    table {
+        thead {
+            background-color: $primary-color;
+            color: white;
+        }
+        tbody {
+            tr:hover {
+                background-color: lighten($primary-color, 40%);
+            }
+            a {
+                color: $primary-color;
+                &:hover {
+                    text-decoration: underline;
+                }
+            }
+        }
+    }
+
+    .alert.alert-info {
+        display: flex;
+        .file {
+            align-self: flex-end;
+            margin-left: 10%;
+        }
+    }
+}

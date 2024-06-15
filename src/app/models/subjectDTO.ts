@@ -55,8 +55,9 @@ export class Task {
     title?: string
     deadline?: string // DateTime
     description?: string
+    filename?: string
 
-    delivered = false // If the task has been delivered ONLY CLIENT
+    isDelivered = false // ONLY CLIENT If the task has been delivered
     deliveries?: Array<Delivery>
 
     comments?: Array<Comment>
@@ -66,5 +67,7 @@ export class Delivery {
     deliveryId?: number
     delivererId?: string
     deliveryDate?: string // DateTime
+    mark? : number
+
     filename?: string
 }

@@ -23,6 +23,9 @@ import { UnitDetailsComponent } from './pages/unit-details/unit-details.componen
 import { CreateUpdateTheoryComponent } from './components/create-update-theory/create-update-theory.component';
 import { TheoryDetailsComponent } from './pages/theory-details/theory-details.component';
 import { CreateUpdateTask } from './components/create-update-task/create-update-task.component';
+import { TaskDetailsComponent } from './pages/task-details/task-details.component';
+import { CreateDeliveryComponent } from './components/create-delivery/create-delivery.component';
+import { MarkDeliveryComponent } from './components/mark-delivery/mark-delivery.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +41,9 @@ import { CreateUpdateTask } from './components/create-update-task/create-update-
     UnitDetailsComponent,
     CreateUpdateTheoryComponent,
     TheoryDetailsComponent,
+    TaskDetailsComponent,
+    CreateDeliveryComponent,
+    MarkDeliveryComponent,
     CreateUpdateTask
   ],
   imports: [

@@ -1,0 +1,11 @@
+<div class="container">
+  <h2>Entregar tarea</h2>
+    <input type="file" id="file" name="file" (change)="onUpload($event)">
+    <div class="file-upload-wrapper">
+      <label for="file" class="file-upload-label">
+        <span>Selecciona el archivo</span>
+      </label>
+    </div>
+    <button class="btn save" [disabled]="!deliveryFile" (click)="createDelivery()">Confirmar entrega</button>
+    <button class="btn cancel" (click)="cancel()">Cancelar</button>
+</div>

@@ -36,7 +36,10 @@ export class SubscribeSubjectComponent implements OnInit {
   onSubmit() {
     if (!this.subscribeForm.valid) return
     this.subjectService.subscribeStudentToSubject(this.subscribeForm.value.accessCode).subscribe(res => {
-      if (res) this.loginInfo.updateUserData(undefined, true)
+      if (res) {
+        this.loginInfo.updateUserData()
+        this.onAciton.emit()
+      }
       else this.subscribeError = true
     })
   }

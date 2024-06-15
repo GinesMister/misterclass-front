@@ -1,0 +1,46 @@
+.container {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+h1 {
+    margin-bottom: 20px;
+}
+input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+button {
+    background-color: #4CAF50 !important;
+    color: white;
+    cursor: pointer;
+    margin-right: 10px;
+    &.cancel {
+        background-color: rgb(255, 79, 79) !important;
+        &:hover {
+            background-color: rgb(199, 55, 55) !important;
+        }
+    }
+    &:hover {
+        background-color: #45a049 !important;
+        color: white !important;
+    }
+    &:disabled {
+        background-color: #ccc !important;
+        cursor: not-allowed !important;
+    }
+}
+p {
+    color: rgb(160, 160, 160);
+    text-align: left;
+}
+.text-danger {
+    margin-top: 0;
+    margin-bottom: 10px;
+}

@@ -9,6 +9,7 @@ import { SubscribeSubjectComponent } from './components/subscribe-subject/subscr
 import { ClassDetailsComponent } from './pages/class-details/class-details.component';
 import { UnitDetailsComponent } from './pages/unit-details/unit-details.component';
 import { TheoryDetailsComponent } from './pages/theory-details/theory-details.component';
+import { TaskDetailsComponent } from './pages/task-details/task-details.component';
 
 const routes: Routes = [
   {path: '', component: HomepageComponent},
@@ -19,6 +20,7 @@ const routes: Routes = [
   {path: 'clase/:id', component: ClassDetailsComponent},
   {path: 'clase/:id/unidad/:unitId', component: UnitDetailsComponent},
   {path: 'clase/:id/unidad/:unitId/teoria/:theoryId', component: TheoryDetailsComponent},
+  {path: 'clase/:id/unidad/:unitId/tarea/:taskId', component: TaskDetailsComponent},
   {path: '**', component: NotFoundComponent}
 ];
 

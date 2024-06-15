@@ -53,7 +53,7 @@
             </h2>
             <ul class="theory-list" *ngFor="let task of unit.tasks">
                 <li class="theory-item">
-                    <a routerLink="teoria/{{task.taskId}}">{{task.title}}</a>
+                    <a routerLink="tarea/{{task.taskId}}">{{task.title}}</a>
                 </li>
             </ul>
             <h2 class="empty" *ngIf="unit.tasks?.length == 0">
