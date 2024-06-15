@@ -10,7 +10,7 @@
         >
             <h1>Clases suscritas
                 <span class="btn btn-primary"
-                    (click)="switchCreateSubjectVisible()"
+                    (click)="switchSubscribeSubjectVisible()"
                 > + Suscribirse a una clase </span>
             </h1>
             <h2 class="empty-classes" *ngIf="loginInfo.userData?.subjectsSubscribed?.length == 0">
@@ -41,7 +41,7 @@
             <h1>
                 Clases creadas
                 <span class="btn btn-primary"
-                    (click)="router.navigate(['/crear-clase'])"
+                    (click)="switchCreateSubjectVisible()"
                 > + Crear clase </span>
             </h1>
             <h2 class="empty-classes" *ngIf="loginInfo.userData?.subjectsCreated?.length == 0">
@@ -70,11 +70,15 @@
     </div>
 </main>
 
-<div class="overlay" *ngIf="isCreateSubjectVisible">
+<div class="overlay" *ngIf="isSubscribeSubjectVisible || isCreateSubjectVisible">
     <div class="content">
     </div>
 </div>
 <app-subscribe-subject 
+    *ngIf="isSubscribeSubjectVisible"
+    (onAciton)="switchSubscribeSubjectVisible()">
+</app-subscribe-subject>
+<app-create-subject 
     *ngIf="isCreateSubjectVisible"
     (onAciton)="switchCreateSubjectVisible()">
-</app-subscribe-subject>
+</app-create-subject>

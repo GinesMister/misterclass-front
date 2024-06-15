@@ -12,6 +12,7 @@ import { isColorDark } from '../../functions/colorData';
 export class HomepageComponent implements OnInit {
 
   isCreateSubjectVisible = false
+  isSubscribeSubjectVisible = false
 
   constructor (
     public loginInfo: LoginInfoService,
@@ -27,5 +28,6 @@ export class HomepageComponent implements OnInit {
     return isColorDark(subject.color!)
   }
 
+  switchSubscribeSubjectVisible = () => this.isSubscribeSubjectVisible = !this.isSubscribeSubjectVisible
   switchCreateSubjectVisible = () => this.isCreateSubjectVisible = !this.isCreateSubjectVisible
 }

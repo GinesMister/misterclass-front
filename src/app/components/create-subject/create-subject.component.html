@@ -1,0 +1,22 @@
+<div class="container">
+  <ng-container *ngIf="!isCreated">
+    <h2>Crear asignatura</h2>
+    <form [formGroup]="subjectForm" (ngSubmit)="onSubmit()">
+        
+      <input type="text" formControlName="name" placeholder="Nombre de la asignatura" required>
+      <div class="color-selector">
+        <label>Color </label>
+        <input type="color" formControlName="color" placeholder="Nombre de la asignatura" required>
+      </div>
+      <button class="btn save" [disabled]="subjectForm.invalid">Crear</button>
+      <button class="btn cancel" (click)="cancel()">Cancelar</button>
+    </form>
+  </ng-container>
+
+  <ng-container *ngIf="isCreated">
+    <h2>Asignatura creada con éxito</h2>
+    <p class="text-center">Comparte el siguiente código de asignatura</p>
+    <h3>{{newSubjectCode}}</h3>
+    <i class="fas fa-arrow-left" (click)="cancel()"></i>
+  </ng-container>
+</div>

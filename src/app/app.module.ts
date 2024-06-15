@@ -11,7 +11,6 @@ import { AuthService } from './services/server-petitions/api/auth.service';
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import { LoginInfoService } from './services/login-info.service';
-import { CreateSubjectComponent } from './pages/create-subject/create-subject.component';
 import { SubjectService } from './services/subject.service';
 import { SubjectApiService } from './services/server-petitions/api/subject-api.service';
 import { UserApiService } from './services/server-petitions/api/user-api.service';
@@ -26,6 +25,7 @@ import { CreateUpdateTask } from './components/create-update-task/create-update-
 import { TaskDetailsComponent } from './pages/task-details/task-details.component';
 import { CreateDeliveryComponent } from './components/create-delivery/create-delivery.component';
 import { MarkDeliveryComponent } from './components/mark-delivery/mark-delivery.component';
+import { CreateSubjectComponent } from './components/create-subject/create-subject.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +34,6 @@ import { MarkDeliveryComponent } from './components/mark-delivery/mark-delivery.
     HomepageComponent,
     SingUpComponent,
     LoginComponent,
-    CreateSubjectComponent,
     SubscribeSubjectComponent,
     ClassDetailsComponent,
     CreateUpdateUnitComponent,
@@ -44,7 +43,8 @@ import { MarkDeliveryComponent } from './components/mark-delivery/mark-delivery.
     TaskDetailsComponent,
     CreateDeliveryComponent,
     MarkDeliveryComponent,
-    CreateUpdateTask
+    CreateUpdateTask,
+    CreateSubjectComponent
   ],
   imports: [
     BrowserModule,

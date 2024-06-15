@@ -66,6 +66,13 @@
       </span>
     </div>
 
+    <div class="alert alert-success" *ngIf="delivery?.mark">
+      Tu entrega fue calificada con 
+      <span class="highlight">
+        {{delivery?.mark! | decimalComma}}
+      </span>
+    </div>
+
     <button type="button" class="btn btn-success mt-5"
         *ngIf="!task.isDelivered"
         (click)="switchCreateDeliveryVisible()">

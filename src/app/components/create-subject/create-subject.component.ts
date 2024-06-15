@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import { LoginInfoService } from '../../services/login-info.service';
-import { Router } from '@angular/router';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Subject } from '../../models/subjectDTO';
+import { LoginInfoService } from '../../services/login-info.service';
 import { SubjectService } from '../../services/subject.service';
+import { Router } from '@angular/router';
+import { Subject } from '../../models/subjectDTO';
 
 @Component({
   selector: 'app-create-subject',
@@ -12,19 +12,21 @@ import { SubjectService } from '../../services/subject.service';
 })
 export class CreateSubjectComponent implements OnInit {
 
+  @Output() onAciton: EventEmitter<void> = new EventEmitter<void>()
+
   subjectForm: FormGroup
-  createError = false
   newSubjectCode: string | undefined
+  isCreated = false
 
   constructor(
     private fb: FormBuilder,
-    public loginInfo: LoginInfoService,
+    private loginInfo: LoginInfoService,
     private subjectService: SubjectService,
     private router: Router
   ) {
     this.subjectForm = this.fb.group({
       name: ['', [Validators.required, Validators.min(3)]],
-      color: ['', [Validators.required, Validators.min(3)]]
+      color: ['', [Validators.required]]
     })
   }
 
@@ -41,8 +43,12 @@ export class CreateSubjectComponent implements OnInit {
     }
     this.subjectService.createSubject(newSubject).subscribe(res => {
       this.newSubjectCode = res
+      this.loginInfo.updateUserData()
+      this.isCreated = true
     })
-    this.loginInfo.updateUserData()
-    this.createError = true
+  }
+
+  cancel() {
+    this.onAciton.emit()
   }
 }
