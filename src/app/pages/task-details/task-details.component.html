@@ -12,7 +12,10 @@
       </a>
   </div>
   <div class="mt-5">
-    <h4>Fecha de Entrega: <span class="font-weight-normal">{{task.deadline! | europeanDate}} a las {{task.deadline! | hourFormatter}}h</span></h4>
+    <h4>
+      Fecha de Entrega: <span class="font-weight-normal">{{task.deadline! | europeanDate}} a las {{task.deadline! | hourFormatter}}h</span>
+      <i class="fas fa-pencil-alt btn btn-edit update-task" (click)="updateTask()"></i>
+    </h4>
   </div>
 
   <!-- Teacher -->
@@ -82,7 +85,8 @@
   </ng-container>
 </main>
 
-<div class="overlay" *ngIf="isCreateDeliveryVisible || isMarkDeliveryVisible">
+<div class="overlay"
+    *ngIf="isCreateDeliveryVisible || isMarkDeliveryVisible || isUpdateTaskVisible">
   <div class="content"></div>
 </div>
 <app-create-delivery
@@ -95,3 +99,9 @@
   [delivery]="delivery!"
   (onAction)="switchMarkDeliveryVisible(); updateData($event!)">
 </app-mark-delivery>
+<app-create-update-task
+  *ngIf="isUpdateTaskVisible"
+  [unit]="unitForUpdateTask"
+  [task]="task"
+  (onAction)="switchUpdateTaskVisible(); updateData($event!)">
+</app-create-update-task>

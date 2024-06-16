@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Delivery, Task } from '../../models/subjectDTO';
+import { Delivery, Task, Unit } from '../../models/subjectDTO';
 import { ActivatedRoute } from '@angular/router';
 import { SubjectService } from '../../services/subject.service';
 import { DataConnetion } from '../../services/server-petitions/dataConnection';
@@ -15,6 +15,7 @@ export class TaskDetailsComponent implements OnInit {
 
   @Input() task!: Task
   unitId!: number
+  unitForUpdateTask!: Unit
   downloadLink!: string
   deliveryDownloadBaseLink!: string
 
@@ -22,6 +23,7 @@ export class TaskDetailsComponent implements OnInit {
 
   isCreateDeliveryVisible = false
   isMarkDeliveryVisible = false
+  isUpdateTaskVisible = false
 
   constructor(
     private route: ActivatedRoute,
@@ -73,9 +75,16 @@ export class TaskDetailsComponent implements OnInit {
 
   switchCreateDeliveryVisible = () => this.isCreateDeliveryVisible = !this.isCreateDeliveryVisible
   switchMarkDeliveryVisible = () => this.isMarkDeliveryVisible = !this.isMarkDeliveryVisible
+  switchUpdateTaskVisible = () => this.isUpdateTaskVisible = !this.isUpdateTaskVisible
 
   markDelivery(delivery: Delivery) {
     this.delivery = delivery
     this.switchMarkDeliveryVisible()
+  }
+
+  updateTask() {
+    this.unitForUpdateTask = new Unit()
+    this.unitForUpdateTask.unitId = this.unitId
+    this.switchUpdateTaskVisible()
   }
 }

@@ -61,6 +61,8 @@ export class SubjectService {
 
   // Tasks
   createUpdateTask(unit: Unit, task: Task, file?: File, isNew = true): Observable<void> {
+    console.log(unit)
+    console.log(task)
     if (isNew) {
       return this.subjectApi.createTask(unit.unitId!, task, file!)
     } else return this.subjectApi.updateTask(unit.unitId!, task)

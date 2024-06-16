@@ -7,13 +7,15 @@
     <input type="text" class="description" formControlName="description" placeholder="Descripción" required>
     <label>Fecha de entrega</label>
     <input type="datetime-local" class="form-control" formControlName="deadline" placeholder="Fecha de entrega" required>
-    <input type="file" id="file" name="file" (change)="onUpload($event)">
-    <div class="file-upload-wrapper">
-      <label for="file" class="file-upload-label">
-        <span>Selecciona el archivo</span>
-      </label>
-    </div>
-    <button class="btn save" [disabled]="taskForm.invalid || !taskFile">Guardar</button>
+    <ng-container *ngIf="!task">
+      <input type="file" id="file" name="file" (change)="onUpload($event)">
+      <div class="file-upload-wrapper">
+        <label for="file" class="file-upload-label">
+          <span>Selecciona el archivo</span>
+        </label>
+      </div>
+    </ng-container>
+    <button class="btn save" [disabled]="taskForm.invalid || (!taskFile && !task)">Guardar</button>
     <button class="btn cancel" (click)="cancel()">Cancelar</button>
   </form>
 </div>

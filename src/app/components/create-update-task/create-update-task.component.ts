@@ -33,6 +33,8 @@ export class CreateUpdateTask implements OnInit {
     if (this.task) {
       this.dateToManage = new Date(this.task.deadline!).toISOString().slice(0, 16)
       this.taskForm.patchValue({ deadline: this.dateToManage})
+      this.taskForm.patchValue({ title: this.task.title})
+      this.taskForm.patchValue({ description: this.task.description})
     }
 
   }
@@ -42,7 +44,7 @@ export class CreateUpdateTask implements OnInit {
   }
 
   createUpdateTask() {
-    if (!this.taskForm.valid && !this.taskFile) return
+    if (!this.taskForm.valid && (!this.taskFile || this.task)) return
 
     if (this.task) {
       this.task.title = this.taskForm.value.title
