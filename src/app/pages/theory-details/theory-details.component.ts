@@ -3,6 +3,7 @@ import { TheoryElement } from '../../models/subjectDTO';
 import { ActivatedRoute } from '@angular/router';
 import { SubjectService } from '../../services/subject.service';
 import { DataConnetion } from '../../services/server-petitions/dataConnection';
+import { LoginInfoService } from '../../services/login-info.service';
 
 @Component({
   selector: 'app-theory-details',
@@ -17,7 +18,8 @@ export class TheoryDetailsComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    public subjectService: SubjectService
+    public subjectService: SubjectService,
+    private loginInfo: LoginInfoService
   ) { }
 
   ngOnInit() {
@@ -26,6 +28,7 @@ export class TheoryDetailsComponent implements OnInit {
       this.theoryElement = new TheoryElement(params['theoryId'])
       this.unitId = params['unitId']
       this.updateTheoryElementFromSubjectData()
+      this.loginInfo.checkRoleInSubject(params['id'], 'code')
     })
   }
 

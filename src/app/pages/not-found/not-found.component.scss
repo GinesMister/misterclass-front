@@ -1,0 +1,29 @@
+.container {
+    text-align: center;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    border-radius: 8px;
+}
+.container h1 {
+    font-size: 100px;
+    margin: 0;
+    color: #e74c3c;
+}
+.container p {
+    font-size: 18px;
+    margin: 20px 0;
+}
+.container a {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #3498db;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+.container a:hover {
+    background-color: #2980b9;
+}

@@ -36,15 +36,15 @@ export class ClassDetailsComponent implements OnInit {
       let subjectId = this.loginInfo.userData?.subjectsSubscribed.find(
         subject => subject.accessCode === this.subjectCode
       )?.subjectId
-      this.loginInfo.role = 'student'
 
       // Check on created
       if (!subjectId) {
         subjectId = this.loginInfo.userData?.subjectsCreated.find(
           subject => subject.accessCode === this.subjectCode
         )?.subjectId
-        this.loginInfo.role = 'teacher'
       }
+
+      this.loginInfo.checkRoleInSubject(this.subjectCode, 'code')
 
       this.subjectService.updateSubjectData(subjectId)
       // JUST FOR TESTING
@@ -90,6 +90,9 @@ export class ClassDetailsComponent implements OnInit {
     return isColorDark(this.subjectService.subjectData?.color!)
   }
 
+  goClickedTask(unitId: number, taskId: number) {
+    this.router.navigate([`${this.router.url}/unidad/${unitId}/tarea/${taskId}`])
+  }
   // Develop features
   // file?: File
   // onUploadConfirm() {

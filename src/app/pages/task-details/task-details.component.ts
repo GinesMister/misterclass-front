@@ -35,6 +35,7 @@ export class TaskDetailsComponent implements OnInit {
         this.task = new Task(params['taskId'])
         this.unitId = params['unitId']
         this.updateTaskFromSubjectData()
+        this.loginInfo.checkRoleInSubject(params['id'], 'code')
       })
     }
   }

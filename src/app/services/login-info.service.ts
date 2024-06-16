@@ -54,4 +54,15 @@ export class LoginInfoService {
       })
     })
   }
+
+  checkRoleInSubject(subjectIdCode : number | string, type: 'id' | 'code') {
+    if (type == 'id') {
+      this.userData!.subjectsCreated.find(s => s.subjectId == subjectIdCode) 
+        ? this.role = 'teacher' : this.role = 'student'
+    }
+    if (type == 'code') {
+      this.userData!.subjectsCreated.find(s => s.accessCode == subjectIdCode) 
+        ? this.role = 'teacher' : this.role = 'student'
+    }
+  }
 }

@@ -36,19 +36,14 @@
                 Tareas creadas <span class="date">Fecha de entrega</span>
             </h5>
             <ul class="tasks" *ngFor="let task of unit.tasks">
-                <li class="task">{{task.title}} 
+                <li class="task" *ngIf="!task.isDelivered && loginInfo.role == 'student' || loginInfo.role == 'teacher'"
+                (click)="goClickedTask(unit.unitId!, task.taskId!)">
+                    {{task.title}}
                     <span class="date highlight">{{task.deadline! | europeanDate}}</span>
                 </li>
             </ul>
         </div>
     </div>
-
-    <!-- Only for testing -->
-    <!-- <div class="develop">
-        <h3>Develop tool</h3>
-        <input type="file" (change)="onUpload($event)">
-        <button (click)="onUploadConfirm()">Create delivery</button>
-    </div> -->
 </div>
 
 <div class="overlay" *ngIf="isCreateUnitVisible">

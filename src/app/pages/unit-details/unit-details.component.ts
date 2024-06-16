@@ -34,6 +34,7 @@ export class UnitDetailsComponent implements OnInit {
     
     this.route.params.subscribe(params => {
       this.unit.unitId = params['unitId']
+      this.loginInfo.checkRoleInSubject(params['id'], 'code')
       this.updateUnitFromSubjectData()
     })
   }
